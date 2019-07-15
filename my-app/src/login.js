@@ -1,32 +1,85 @@
+import React from 'react';
+import FacebookLogin from 'react-facebook-login';
+import axios from 'axios';
 
-import React, { Component } from 'react';
-import {Route,Redirect} from 'react-router';
+// function Login() {
 
-import GitHubLogin from 'react-github-login';
+// //   window.FB.getLoginStatus(function(response) {
+// //     statusChangeCallback(response);
+// // });
 
-class Login extends Component {
+//   return (
+//     <div className="Login">
+//       <header className="Login--header">
+//         <p>LOGIN</p>
+//       </header>
+//       <FacebookLogin 
+//         appId="2929682047105289" 
+//         fields="name,email,picture"
+//         icon="fa-facebook" 
+//         callback={responseFacebook} />
+//     </div>
+//   );
+// }
 
-  render() {
+class Login extends React.Component {
 
-    const onSuccessGithub = (response) => {
-      console.log(response);
-      console.log('hel')
-    } 
+    constructor(props){
+        super(props);
+        this.state = {
+            data : ''
+        }
+    }
+  
+    handleSubmit = event => {
+        console.log("cometo here")
+        console.log(this.state.data)
+      
+        axios({
+          method: 'post',
+          url: 'http://localhost:5000/',
+          data: {
+              "name" : JSON.stringify(this.state.data.name),
+          }
+        }).then(function (res) {
 
-    return (
-      <div className="App" align="center">
-        <h1>LOGIN WITH GITHUB AND MICROSOFT</h1>
+          console.log(res);
+            //window.location.replace("http://localhost:3000/makeProfile");
 
-          <GitHubLogin clientId="4339ce46cf25aa332b0c"
-            onSuccess={onSuccessGithub}
-            buttonText="LOGIN WITH GITHUB"
-            className="git-login"
-            valid={true}
-            redirectUri="http://localhost:3000/makeProfile"
-          />
-      </div>
-    );
+
+          
+      });
+      }
+  
+    render() {
+
+        const responseFacebook = response => {
+
+            this.setState({
+                data : response
+              });
+
+              console.log('sdsfg')
+           console.log(this.state.data)
+           this.handleSubmit();
+          }
+       
+        return (
+            <div className="Login">
+                   <header className="Login--header">
+                    <p>LOGIN</p>
+                   </header>
+                   <FacebookLogin 
+                    appId="2929682047105289" 
+                    fields="name,email,picture"
+                    icon="fa-facebook" 
+                    callback={responseFacebook} />
+             </div>
+        );
+      
+    }
   }
-}
+
+
 
 export default Login;
