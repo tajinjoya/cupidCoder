@@ -74,8 +74,8 @@ app.post("/", authPost, (req, res) => {
   res.send('hi')
 })
 
-app.get("/api/authenticate", authGet, (req, res) => {
-
+app.post("/api/loginInfo", authGet, (req, res) => {
+  
   const authLink = 'graph.facebook.com/me?access_token=';
 
 })
