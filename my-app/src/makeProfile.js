@@ -19,6 +19,8 @@ class Gender extends React.Component {
     }
   
     render() {
+
+      if(true){
       return (
         <form onSubmit={this.handleSubmit}>
           <label>
@@ -30,6 +32,7 @@ class Gender extends React.Component {
         
       );
     }
+  }
   }
 
   
