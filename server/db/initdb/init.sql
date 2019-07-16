@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS customers(
+    id SERIAL PRIMARY KEY,
+    customer_name VARCHAR NOT NULL
+);
+
+ALTER TABLE customers ADD COLUMN fax VARCHAR, ADD COLUMN email VARCHAR;

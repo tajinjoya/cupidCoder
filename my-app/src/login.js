@@ -20,7 +20,7 @@ class Login extends React.Component {
         Token: event
       }
     }).then(function(res) {
-      //window.location.replace("http://localhost:3000/makeProfile");
+      window.location.replace("http://localhost:3000/makeProfile");
     });
   };
 

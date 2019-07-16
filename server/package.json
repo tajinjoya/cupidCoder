@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup-docker": "docker run --name sugar-docker -e POSTGRES_PASSWORD=secret -p 5432:5432 postgres:latest",
+    "start-docker-db": "docker start sugar-docker",
+    "setup-tables": "docker exec -i sugar-docker psql -U postgres < ./db/initdb/init.sql",
+    "populate-mock-data": "node ./db/populate.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +21,7 @@
     "node-fetch": "^2.6.0",
     "passport": "^0.4.0",
     "passport-github2": "^0.1.11",
+    "pg": "^7.11.0",
     "react": "^16.8.6",
     "react-github-login": "^1.0.3"
   }
