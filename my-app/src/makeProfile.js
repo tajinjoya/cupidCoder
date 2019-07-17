@@ -19,7 +19,7 @@ const options3 = [
   { value: "Ruby", label: "Ruby" },
   { value: "Typescript", label: "Typescript" },
   { value: "Python", label: "Python" },
-  { value: "Java", label: "Java" },
+  { value: "Java", label: "Java" }
 ];
 
 class Gender extends React.Component {
@@ -29,35 +29,44 @@ class Gender extends React.Component {
     languages: "",
     bio: null
   };
+
   handleChange = selectedOption => {
-    if (selectedOption.value2 === "gender")  this.setState({ gender: selectedOption.label });
-    if (selectedOption.value2 === "tabspace") this.setState({ tabs: selectedOption.value });
+    if (selectedOption.value2 === "gender")
+      this.setState({ gender: selectedOption.label });
+    if (selectedOption.value2 === "tabspace")
+      this.setState({ tabs: selectedOption.value });
   };
+
   languageChange = selectedOption => {
     let obj = [...selectedOption];
-    this.setState({ languages : obj })
+    this.setState({ languages: obj });
   };
+  
   submitData = () => {
-    console.log('hello');
     const cookies = new Cookies();
     const token = cookies.get("Token");
     const id = cookies.get("userId");
-    console.log(id)
-    console.log(token)
+
     axios({
       method: "post",
       url: "http://localhost:5000/api/loginInfoNewUser",
       data: {
-        name: JSON.stringify(this.state.data.name),
-        Token: 'event',
-        
+        name: JSON.stringify(this.state),
+        Token: token,
+        id : id
       }
-    }).then(function(res) {
-      window.location.replace("http://localhost:3000/makeProfile");
+    }).then(res => {
+      window.location.replace("http://localhost:3000/home");
     });
-  }
+  };
+
+
   render() {
-    const { gender: selectedOption, tabs: selectedOption2, languages: selectedOption3 } = this.state;
+    const {
+      gender: selectedOption,
+      tabs: selectedOption2,
+      languages: selectedOption3
+    } = this.state;
     console.log(this.state);
     return (
       <div>

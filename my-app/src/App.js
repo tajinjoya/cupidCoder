@@ -3,20 +3,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from './login'
 import Gender from './makeProfile'
-// class App extends Component {
+import Home from './home'
 
-//   render() {
-
-//     return (
-//       <div>
-//     <Router>
-//       <Route exact path="/" component={Login} />
-//       <Route path="http://localhost:3000/makeProfile" component={Gender} />
-//     </Router>
-//       </div>
-//     );
-//   }
-// }
 
 function App() {
   return (
@@ -24,6 +12,7 @@ function App() {
       <div>
         <Route exact path="/" component={Login} />
         <Route path="/makeProfile" component={Gender} />
+        <Route path="/home" component={Home} />
       </div>
     </Router>
   );

@@ -8,10 +8,11 @@ CREATE TABLE users(
     Gender VARCHAR,
     tab VARCHAR,
     languages VARCHAR,
-    bio VARCHAR,
     user_location VARCHAR,
     pending_matches VARCHAR,
-    matches VARCHAR
+    matches VARCHAR,
+    bio VARCHAR
+
 );
 
 -- INSERT INTO users (user_name) VALUES('chawer');

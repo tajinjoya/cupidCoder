@@ -12,16 +12,19 @@ class Login extends React.Component {
   }
 
   handleSubmit = event => {
-    axios({
-      method: "post",
-      url: "http://localhost:5000/",
-      data: {
-        name: JSON.stringify(this.state.data.name),
-        Token: event
-      }
-    }).then(function(res) {
+    // axios({
+    //   method: "post",
+    //   url: "http://localhost:5000/",
+    //   data: {
+    //     name: JSON.stringify(this.state.data.name),
+    //     Token: event
+    //   }
+    // }).then(function(res) {
+
+
+
       window.location.replace("http://localhost:3000/makeProfile");
-    });
+    //});
   };
 
   render() {
