@@ -81,6 +81,7 @@ async function getAllUsers (req, res) {
 
 async function postUser (req, res) {
   let languageString = '';
+  console.log(req.body);
   const received = JSON.parse(req.body.name)
   const {
     gender,
