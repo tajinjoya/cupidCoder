@@ -2,14 +2,12 @@ const express = require("express")
 const app = express()
 const cookieParser = require('cookie-parser')
 const fetch = require('node-fetch');
+const cors = require('cors')
 
 const {
   Client
 } = require('pg');
 
-app.use(express.json({
-  extended: false
-}));
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -17,6 +15,13 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+
+app.use(express.json({
+  extended: false
+}));
+
+app.use(cookieParser())
 
 
 
@@ -30,7 +35,6 @@ const client = new Client({
 client.connect();
 
 const authGet = function (req, res, next) {
-
   const authLink = 'https://graph.facebook.com/me?access_token=';
 
   fetch(authLink + req.cookies.Token)
@@ -66,27 +70,13 @@ const authPost = function (req, res, next) {
     });
 };
 
-
-// app.post("/", authPost, (req, res) => {
-//   const {
-//     name,
-//     Token
-//   } = req.body;
-//   res.send('hi')
-// })
-
 app.post("/api/loginInfoNewUser", authPost, postUser)
-app.get('/api/allmatches', getAllUsers)
+app.get('/api/allmatches', authGet, getAllUsers)
 
 
 async function getAllUsers (req, res) {
-  //res.send('xDnfghhfgdgfddgskllöklk')
-  const result = await client.query('SELECT * FROM users').then((res) => {return res})
-  console.log(JSON.stringify(result.rows))
-  const html  = '<p>suckmy</p>'
-  res.send(JSON.stringify(result.rows))
-  //res.json(JSON.stringify(result.rows))
-  //res.send({ hello : 'cha'})
+  const result = await client.query('SELECT * FROM users').then((res) => {return res.rows})
+  res.send(JSON.stringify(result))
 }
 
 async function postUser (req, res) {

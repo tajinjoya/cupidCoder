@@ -1,6 +1,6 @@
 import React from "react";
 import FacebookLogin from "react-facebook-login";
-import axios from "axios";
+//import axios from "axios";
 import Cookies from "universal-cookie";
 
 class Login extends React.Component {
