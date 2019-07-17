@@ -1,6 +1,20 @@
-CREATE TABLE IF NOT EXISTS customers(
+	
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users(
     id SERIAL PRIMARY KEY,
-    customer_name VARCHAR NOT NULL
+    user_name  VARCHAR,
+    facebook_id VARCHAR,
+    Gender VARCHAR,
+    tab VARCHAR,
+    languages VARCHAR,
+    bio VARCHAR,
+    user_location VARCHAR,
+    pending_matches VARCHAR,
+    matches VARCHAR
 );
 
-ALTER TABLE customers ADD COLUMN fax VARCHAR, ADD COLUMN email VARCHAR;
+-- INSERT INTO users (user_name) VALUES('chawer');
+-- INSERT INTO users (facebook_id) VALUES('chaaaaaa')
+
+

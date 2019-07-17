@@ -1,5 +1,7 @@
 import React from "react";
 import Select from "react-select";
+import axios from "axios";
+import Cookies from "universal-cookie";
 
 const options = [
   { value2: "gender", value: "Male", label: "Male" },
@@ -35,6 +37,25 @@ class Gender extends React.Component {
     let obj = [...selectedOption];
     this.setState({ languages : obj })
   };
+  submitData = () => {
+    console.log('hello');
+    const cookies = new Cookies();
+    const token = cookies.get("Token");
+    const id = cookies.get("userId");
+    console.log(id)
+    console.log(token)
+    axios({
+      method: "post",
+      url: "http://localhost:5000/api/loginInfoNewUser",
+      data: {
+        name: JSON.stringify(this.state.data.name),
+        Token: 'event',
+        
+      }
+    }).then(function(res) {
+      window.location.replace("http://localhost:3000/makeProfile");
+    });
+  }
   render() {
     const { gender: selectedOption, tabs: selectedOption2, languages: selectedOption3 } = this.state;
     console.log(this.state);
@@ -62,6 +83,7 @@ class Gender extends React.Component {
           options={options3}
           placeholder={this.state.languages}
         />
+        <button onClick={this.submitData}>button</button>
       </div>
     );
   }
