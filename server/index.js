@@ -3,7 +3,9 @@ const app = express()
 const cookieParser = require('cookie-parser')
 const fetch = require('node-fetch');
 
-const {Client} = require('pg');
+const {
+  Client
+} = require('pg');
 
 app.use(express.json({
   extended: false
@@ -25,6 +27,7 @@ const client = new Client({
   port: 5432,
   database: "postgres"
 });
+client.connect();
 
 const authGet = function (req, res, next) {
 
@@ -86,41 +89,54 @@ app.post("/api/loginInfoNewUser", authPost, async (req, res) => {
     languageString += language.value + ' ';
   });
 
-  await client.connect()
+  // await client.connect()
 
   await client.query(`INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('Vidar','${req.body.id}','${gender}','${tabs}','${languageString}','Nacka','', '', 'hi I am ');`)
-  //console.log(res.rows[0].message) // Hello world!
-  await client.end()
+  .then(()=> res.send('success'))
+  .catch(e => res.send(e))
+  // //console.log(res.rows[0].message) // Hello world!
+  // await client.end().catch(e => res.send(e))
+  // // console.log('hi')
 
   // client.connect()
   //   .then(() => console.log('connected'))
   //   .then(() => client.query(`INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('Vidar','${req.body.id}','${gender}','${tabs}','${languageString}','Nacka','', '', 'hi I am ');`))
-  //   .catch(e => console.log(e))
-  //   .finally(() => {
-  //     client.end()
-  //     res.send('success')
+  //   .then(() => {
+  //     res.send('Success')
+  //     //console.log('data inserted')
+    
+  //   })
+  //   .catch(e => res.send(e))
 
-  //   });
-  res.send('hi')
+  //await client.end()
 })
 
 app.get('/api/allmatches', async function (req, res) {
-console.log('cometo here api')
+  console.log('cometo here api')
 
-// await client.connect()
-// const result = await client.query('SELECT * FROM users')
-// await client.end()
+  //await client.connect().catch(e => res.send(e))
+  const result = await client.query('SELECT * FROM users').then((res) => {return res});
+  //await client.end().catch(e => res.send(e))
+  //console.log(result.rows)
+  res.send(result)
+  //console.log(result)
+
+
   // client.connect()
   //   .then(() => console.log('connected'))
-  //   .then(() => client.query('SELECT * FROM users'))
-  //   .catch(e => console.log(e))
-  //   .finally(() => {
-  //     client.end()
-  //     res.send('success')
+  //   .then(() => {
+  //     client.query('SELECT * FROM users');
+  //   }).then(res => {
+  //     console.log('sdfasdfasdf')
+  //     res.send(res)
+  //   })
+  //   .catch(e => res.send(e))
+  //   // .finally(() => {
+  //   //   client.end()
+  //   // });
 
-  //   });
+  //   await client.end()
   // console.log(result)
-  // res.send(result)
 
 })
 
