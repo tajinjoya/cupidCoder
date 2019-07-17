@@ -2,19 +2,20 @@ import React from "react";
 // import Cookies from "universal-cookie";
 
 class home extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          data: ""
-        };
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: ""
+    };
+  }
 
   componentDidMount() {
     console.log("hihi");
     fetch("http://localhost:5000/api/allmatches")
-      .then(result => {
-        console.log("fetch source");
-        console.log(result);
+      .then(result => { return result.json()
+      })
+      .then(res => {
+          console.log(res)
       })
       .catch(e => {
         console.log(e);
@@ -22,7 +23,11 @@ class home extends React.Component {
   }
 
   render() {
-    return <p> hi </p>;
+    return(
+    <div>
+      <p> {this.state.data}</p>
+    </div>
+    )
   }
 }
 export default home;

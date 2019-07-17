@@ -67,16 +67,29 @@ const authPost = function (req, res, next) {
 };
 
 
-app.post("/", authPost, (req, res) => {
-  const {
-    name,
-    Token
-  } = req.body;
-  res.send('hi')
-})
+// app.post("/", authPost, (req, res) => {
+//   const {
+//     name,
+//     Token
+//   } = req.body;
+//   res.send('hi')
+// })
 
-app.post("/api/loginInfoNewUser", authPost, async (req, res) => {
+app.post("/api/loginInfoNewUser", authPost, postUser)
+app.get('/api/allmatches', getAllUsers)
 
+
+async function getAllUsers (req, res) {
+  //res.send('xDnfghhfgdgfddgskllöklk')
+  const result = await client.query('SELECT * FROM users').then((res) => {return res})
+  console.log(JSON.stringify(result.rows))
+  const html  = '<p>suckmy</p>'
+  res.send(JSON.stringify(result.rows))
+  //res.json(JSON.stringify(result.rows))
+  //res.send({ hello : 'cha'})
+}
+
+async function postUser (req, res) {
   let languageString = '';
   const received = JSON.parse(req.body.name)
   const {
@@ -89,56 +102,18 @@ app.post("/api/loginInfoNewUser", authPost, async (req, res) => {
     languageString += language.value + ' ';
   });
 
-  // await client.connect()
-
   await client.query(`INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('Vidar','${req.body.id}','${gender}','${tabs}','${languageString}','Nacka','', '', 'hi I am ');`)
   .then(()=> res.send('success'))
   .catch(e => res.send(e))
-  // //console.log(res.rows[0].message) // Hello world!
-  // await client.end().catch(e => res.send(e))
-  // // console.log('hi')
-
-  // client.connect()
-  //   .then(() => console.log('connected'))
-  //   .then(() => client.query(`INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('Vidar','${req.body.id}','${gender}','${tabs}','${languageString}','Nacka','', '', 'hi I am ');`))
-  //   .then(() => {
-  //     res.send('Success')
-  //     //console.log('data inserted')
-    
-  //   })
-  //   .catch(e => res.send(e))
-
-  //await client.end()
-})
-
-app.get('/api/allmatches', async function (req, res) {
-  console.log('cometo here api')
-
-  //await client.connect().catch(e => res.send(e))
-  const result = await client.query('SELECT * FROM users').then((res) => {return res});
-  //await client.end().catch(e => res.send(e))
-  //console.log(result.rows)
-  res.send(result)
-  //console.log(result)
+}
 
 
-  // client.connect()
-  //   .then(() => console.log('connected'))
-  //   .then(() => {
-  //     client.query('SELECT * FROM users');
-  //   }).then(res => {
-  //     console.log('sdfasdfasdf')
-  //     res.send(res)
-  //   })
-  //   .catch(e => res.send(e))
-  //   // .finally(() => {
-  //   //   client.end()
-  //   // });
-
-  //   await client.end()
-  // console.log(result)
-
-})
 
 const port = process.env.PORT || 5000
 app.listen(port, () => console.log(`listening on port ${port}`))
+
+// async function getAllUsers (req, res) {
+//   const result = await client.query('SELECT * FROM users').then((res) => {return res}).then(res.send('hiihihih'))
+//   //console.log(JSON.stringify(result.rows))
+//   //res.send({ hello : 'cha'})
+// }
