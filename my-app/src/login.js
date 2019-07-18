@@ -20,7 +20,7 @@ class Login extends React.Component {
     //     Token: event
     //   }
     // }).then(function(res) {
-
+    // add logic for checking if the user already exists
 
 
       window.location.replace("http://localhost:3000/makeProfile");
@@ -29,6 +29,7 @@ class Login extends React.Component {
 
   render() {
     const responseFacebook = response => {
+      console.log(response)
       const cookies = new Cookies();
       cookies.set("Token", response.accessToken, { path: "/" });
       cookies.set("userId", response.id, { path: "/" });
