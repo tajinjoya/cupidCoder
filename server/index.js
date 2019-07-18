@@ -75,8 +75,10 @@ app.get('/api/allmatches', authGet, getAllUsers)
 
 
 async function getAllUsers (req, res) {
+
   const result = await client.query('SELECT * FROM users').then((res) => {return res.rows})
   res.send(JSON.stringify(result))
+  
 }
 
 async function postUser (req, res) {

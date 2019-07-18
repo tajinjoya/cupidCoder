@@ -1,48 +1,36 @@
 import React from "react";
-import axios from "axios"
 import Cookies from "universal-cookie";
-
+import Card from './Card';
 class home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: ""
-    };
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: []
+        };
+    }
 
-  componentDidMount() {
-    let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const cookies = new Cookies();
-    console.log(cookies.get("Token"))
-    fetch("http://localhost:5000/api/allmatches",  { credentials: 'include' } )
-      .then(result => {
-        return result.json();
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-//     axios({
-//         method: "post",
-//         url: "http://localhost:5000/api/loginInfoNewUser",
-//         data: {
-//           name: JSON.stringify(this.state),
-//           Token: token,
-//           id : id
-//         }
-//       }).then(res => {
-//         window.location.replace("http://localhost:3000/home");
-//       });
- }
+    componentDidMount() {
+        const cookies = new Cookies();
+        console.log(cookies.get("Token"))
+        fetch("http://localhost:5000/api/allmatches", {credentials: 'include'}).then(result => {
+            return result.json();
+        }).then(res => {
 
-  render() {
-    return (
-      <div>
-        <p> {this.state.data}</p>
-      </div>
-    );
-  }
+            this.setState({data: res});
+            console.log('home-data',this.state.data);
+        }).catch(e => {
+            console.log(e);
+        });
+
+    }
+
+    render() {
+        return (
+            <div>
+              <Card allData={this.state.data} />
+            </div>
+        );
+    }
 }
 export default home;
+
