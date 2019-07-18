@@ -1,6 +1,6 @@
 import React from "react";
 import Cookies from "universal-cookie";
-import Card from './Card';
+import Cards from './Card';
 class home extends React.Component {
     constructor(props) {
         super(props);
@@ -17,7 +17,7 @@ class home extends React.Component {
         }).then(res => {
 
             this.setState({data: res});
-            console.log('home-data',this.state.data);
+            //console.log('home-data',this.state.data);
         }).catch(e => {
             console.log(e);
         });
@@ -27,7 +27,7 @@ class home extends React.Component {
     render() {
         return (
             <div>
-              <Card allData={this.state.data} />
+              <Cards allData={this.state.data} />
             </div>
         );
     }

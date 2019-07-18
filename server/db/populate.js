@@ -11,9 +11,9 @@ const client = new Client({
 client.connect()
     .then(()=> console.log('connected'))
 
-    .then(()=> client.query("INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('Cha','Cha_fb','Male','tab','js','stockholm','', '', 'hi I am ');"))
-    .then(()=> client.query("INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('Vidar','Vidar_fb','Female','Space','js','Nacka','', '', 'hi I am ');"))
-    // .then(()=> client.query("INSERT INTO users (id,  user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('3','Tajin','Tajin_fb','Female','Space','js','Solna','', '', 'hi I am ');"))
+    .then(()=> client.query("INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('Cha','2728189017209232','Male','tab','js','stockholm','', '', 'hi I am ');"))
+    .then(()=> client.query("INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('Vidar','2620851437927086','Female','Space','js','Nacka','', '', 'hi I am ');"))
+    .then(()=> client.query("INSERT INTO users (id,  user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('3','Tajin','Tajin_fb','Female','Space','js','Solna','', '', 'hi I am ');"))
     // .then(()=> client.query("INSERT INTO users (id,  user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('4','John','John_fb','Male','Space','js','stockholm','', '', 'hi I am ');"))
     // .then(()=> client.query("INSERT INTO users (id,  user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('5','Sravya','Sravya_fb','Female','tab','js','stockholm','', '', 'hi I am ');"))
     // .then(()=> client.query("INSERT INTO users (id,  user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('6','Stina','Stina_fb','Female','tab','js','stockholm','', '', 'hi I am ');"))
