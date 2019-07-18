@@ -47,7 +47,7 @@ class Login extends React.Component {
           <p>LOGIN</p>
         </header>
         <FacebookLogin
-          appId="2728189017209232"
+          appId="2929682047105289"
           fields="name,email,picture"
           icon="fa-facebook"
           callback={responseFacebook}

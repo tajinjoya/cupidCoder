@@ -1,45 +1,95 @@
 import React, { Component } from 'react'
-import { Card, CardWrapper } from 'react-swipeable-cards';
 import Avatar from 'react-avatar';
+import { render } from "react-dom";
 
+import Swipeable from "react-swipy";
+
+
+const appStyles = {
+  height: "20%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100%",
+  minHeight: "100vh",
+  fontFamily: "sans-serif",
+  overflow: "hidden"
+};
+
+const wrapperStyles = { position: "relative", width: "250px", height: "250px" };
+const actionsStyles = {
+  display: "flex",
+  justifyContent: "space-between",
+  marginTop: 12
+};
 class Cards extends Component {
-    
 
- 
-  onSwipeLeft(data) {
-    console.log("I was swiped left.",data);
-  }
- 
-  onSwipeRight(data) {
-    console.log("I was swiped right.",data);
-  }
- 
-  renderCards() {
-    let data = this.props.allData;
-    console.log('card-data', data[0]);
-    return data.map((d) => {
-      return(
-        <Card
-          key={d.user_name}
-          onSwipeLeft={this.onSwipeLeft.bind(this)}
-          onSwipeRight={this.onSwipeRight.bind(this)}
-          data={d}>
-            {d.user_name}
-            {d.gender}
-            <Avatar facebookId={d.facebook_id} round={true}  size="150" />
+  state = {
+    cards: ["First", "Second", "Third", ["work ", "no"]]
+  };
 
-        </Card>
-      );
-    });
-  }
- 
+  remove = () =>
+    this.setState(({ cards }) => ({ cards: cards.slice(1, cards.length) }));
+
   render() {
-    return(
-      <CardWrapper>
-        {this.renderCards()}
-      </CardWrapper>
+    const { cards } = this.state;
+
+    return (
+      <div style={appStyles}>
+        <div style={wrapperStyles}>
+          {cards.length > 0 && (
+            <div style={wrapperStyles}>
+              <Swipeable
+                buttons={({ right, left }) => (
+                  <div style={actionsStyles}>
+                    <Button onClick={left}>Reject</Button>
+                    <Button onClick={right}>Accept</Button>
+                  </div>
+                )}
+                onAfterSwipe={this.remove}
+              >
+                <Card>{cards[0]}</Card>
+              </Swipeable>
+              {cards.length > 1 && <Card zIndex={-1}>{cards[1]}</Card>}
+            </div>
+          )}
+          {cards.length <= 1 && <Card zIndex={-2}>No more cards</Card>}
+        </div>
+      </div>
     );
   }
 }
+
+const buttonStyles = {
+  padding: "16px 24px",
+  background: "whitesmoke",
+  cursor: "pointer",
+  border: "none",
+  borderRadius: 3
+};
+
+const Button = ({ children, onClick }) => (
+  <button onClick={onClick} style={{ ...buttonStyles }}>
+    {children}
+  </button>
+);
+
+const cardStyles = {
+  background: "whitesmoke",
+  borderRadius: 3,
+  width: "250px",
+  height: "250px",
+  cursor: "pointer",
+  userSelect: "none",
+  position: "absolute",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  top: 0
+};
+
+const Card = ({ zIndex = 0, children }) => (
+  <div style={{ ...cardStyles, zIndex }}>{children}</div>
+);
 
 export default Cards;
