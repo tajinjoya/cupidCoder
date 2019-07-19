@@ -1,0 +1,111 @@
+.card_container{
+    background-color: white !important;
+    margin-top: -50px !important;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 3px 4px 10px;
+   color: black;
+   /* display: flex !important; */
+   flex-direction: row !important;
+   flex-wrap: wrap !important;
+   justify-content: center !important;
+}
+.container-loaded {
+    margin-top: 10px !important;
+}
+.removed{
+    visibility: hidden;
+    pointer-events: none
+}
+.sb-avatar {
+    border: 3px solid whitesmoke;
+    width: 340px;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    pointer-events: none
+}
+.cardBody {
+    background: radial-gradient(circle at 9% 100%, #ff4545, #f98b60);
+}
+h1 {
+    margin-top: 5px;
+    text-align: center
+}
+.gender {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    pointer-events: none
+}
+.bio {
+    margin-left: 40px;
+    display: flex;
+    pointer-events: none
+}
+ul {
+    margin-top: 1px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 2px;
+    pointer-events: none;
+    top: 15px;
+}
+.aDIV ul {
+    pointer-events: none;
+    list-style-type:none;
+    border-bottom: 1px solid lightgray;
+    padding-bottom:4px;
+    padding-left: 0px;
+}
+.aDIV li {
+        pointer-events: none;
+           display: inline;
+           margin: 3px;
+}
+.aDiv {
+    overflow: auto;
+    padding-top: 50px;
+    pointer-events: none;
+}
+    .picture {
+        float:right;
+        width: 64px;
+        height: 65px;
+        display: block;
+        position: relative;
+      }
+      
+      .picture::after {
+        background-repeat: no-repeat;
+        content: "";
+        background: url('./images/Untitled3.png');
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;   
+      }
+.userName {
+    margin-bottom: 4px;
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    pointer-events: none;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 5px;
+}
+.languages {
+    margin-top: 15px;
+        height: 100%;
+    overflow: auto;
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 5px;
+    pointer-events: none
+}
+.pleaseDont {
+    pointer-events: none
+}

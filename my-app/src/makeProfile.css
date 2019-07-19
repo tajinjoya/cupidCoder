@@ -1,0 +1,58 @@
+
+  
+  .root {
+    font-family: 'changa One', sans-serif;
+    padding-top: 60px;
+    margin: 10px;
+    margin-top: 40px;
+    line-height: 0.8em;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    /* background: #fafafa; */
+    height: 100vh;
+  }
+
+  
+  
+  
+  
+  textarea {
+    margin-top: 30px;
+    width: 100%;
+    /* border-style: ridge; */
+    /* box-shadow: 5px 10px 8px #888888; */
+  
+  }
+  
+  
+  
+  .spanProfile {
+    margin-top: 70Px;
+    background: radial-gradient(circle at 10% 100%, #f98b60, #ff4545);
+    border: solid 1px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    border-color: whitesmoke;
+    border-radius: 30px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 150px;
+  }
+  
+ .textareaProfile{
+   height: 50px;
+    box-shadow: 2px 2px 2px #888888;
+    border-radius: 3px;
+    width: 98%;
+
+  }
+  
+  span button {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    
+  }

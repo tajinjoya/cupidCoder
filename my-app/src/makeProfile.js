@@ -2,6 +2,7 @@ import React from "react";
 import Select from "react-select";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import './makeProfile.css';
 
 const options = [
     {
@@ -71,9 +72,7 @@ class Gender extends React.Component {
     };
 
     textChange = event => {
-      console.log(event);
-      this.setState({bio: event.target.value});
-
+        this.setState({bio: event.target.value});
     };
 
     submitData = () => {
@@ -98,10 +97,9 @@ class Gender extends React.Component {
 
     render() {
         const {gender: selectedOption, tabs: selectedOption2, languages: selectedOption3, bio: selectedOption4} = this.state;
-        console.log(this.state);
 
         return (
-            <div>
+            <div className='root'>
                 <h4>Gender</h4>
                 <Select
                     value={selectedOption}
@@ -126,10 +124,14 @@ class Gender extends React.Component {
                     rows={this.state.rows}
                     value={selectedOption4}
                     placeholder={'Enter your text here...'}
-                    className={'textarea'}
-                    onBlur={this.textChange.bind(this)}/>
+                    className='textareaProfile'
+                    onBlur={this
+                    .textChange
+                    .bind(this)}/>
 
-                <button onClick={this.submitData}>button</button>
+                <span className="spanProfile">
+                    <button onClick={this.submitData}>Continue</button>
+                </span>
 
             </div>
         );

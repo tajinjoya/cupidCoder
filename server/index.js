@@ -72,6 +72,9 @@ const authPost = function (req, res, next) {
 
 app.post("/api/loginInfoNewUser", authPost, postUser)
 app.get('/api/allmatches', authGet, getAllUsers)
+app.post("/api/pandingMatch",(req, res)=>{
+  console.log('panding req', req);
+})
 
 
 async function getAllUsers (req, res) {
@@ -83,19 +86,19 @@ async function getAllUsers (req, res) {
 
 async function postUser (req, res) {
   let languageString = '';
-  console.log(req.body);
   const received = JSON.parse(req.body.name)
   const {
     gender,
     tabs,
-    languages
+    languages,
+    bio
   } = received;
 
   languages.forEach(language => {
     languageString += language.value + ' ';
   });
 
-  await client.query(`INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('Vidar','${req.body.id}','${gender}','${tabs}','${languageString}','Nacka','', '', 'hi I am ');`)
+  await client.query(`INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio) VALUES('Vidar','${req.body.id}','${gender}','${tabs}','${languageString}','Nacka','', '', '${bio}');`)
   .then(()=> res.send('success'))
   .catch(e => res.send(e))
 }

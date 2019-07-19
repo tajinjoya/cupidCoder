@@ -1,75 +1,84 @@
-import React from "react";
+import React, { Component } from "react";
+import { Card, CardWrapper } from "react-swipeable-cards";
 import Avatar from "react-avatar";
-import SwipeableViews from 'react-swipeable-views';
-//import Cards, { Card } from 'react-swipe-card'
+import Cookies from "universal-cookie";
+import './card.css'
+const cookies = new Cookies();
+class Cards extends Component {
 
-class Cards extends React.Component  {
+  state = {
+    data : this.props.allData
+  }
 
-    
-    render () {
+  // submitData = (e) => {
+  //   const cookies = new Cookies();
+  //   const token = cookies.get("Token");
+  //   const id = cookies.get("userId");
 
-      let data = this.props.allData
-      console.log('carddata',data)
+  //   axios({
+  //       method: "post",
+  //       url: "http://localhost:5000/api/pandingMatch",
+  //       data: {
+  //           name: JSON.stringify(this.state),
+  //           Token: token,
+  //           id: id,
+  //           liked:e
+  //       }
+  //   }).then(res => {
+        // window.location.replace("http://localhost:3000/home");
+  //   });
+  // };
+
+  onSwipeLeft(d) {
+    console.log("Don't like");
+    const token = cookies.get("Token");
+    const id = cookies.get("userId");
+    console.log('test d', d);
+
+  }
+
+  onSwipeRight(d) {
+    // submitData(d);
+    console.log("Like");
+    const token = cookies.get("Token");
+    const id = cookies.get("userId");
+    console.log('test d', d);
+  }
+
+  renderCards() {
+    let data = this.props.allData;
+    return data.map(d => {
       return (
-        <MyComponent theData={data}></MyComponent>
-      )
+        <Card
+          
+          key={d.id}
+          onSwipeLeft={this.onSwipeLeft.bind(this)}
+          onSwipeRight={this.onSwipeRight.bind(this)}
+          data={d}
+        >
+          <div className="pleaseDont">
+          <Avatar facebookId={d.facebook_id} size="250" round="10px" />
+          <h3 className="userName">{d.user_name}</h3>
+          <div className="aDIV">
+          <ul>
+          <li className="gender">Gender: {d.gender} </li> 
+          <li className="tabs">T&S: {d.tab} </li>
+          </ul>
+          <p className="languages">languages: {d.languages} </p>
+          <p className="bio">{d.bio}</p> 
+          </div>
+          </div>
+        </Card>
+      );
+    });
+  }
+  render() {
+    return (
+      <div className="cardBody">
+        <div className="picture"></div>
+        <CardWrapper>{this.renderCards()}</CardWrapper>
+      </div>
+    );
   }
 }
-
-const styles = {
-  slide: {
-    padding: 15,
-    minHeight: 300,
-    color: '#fff',
-  },
-  slide1: {
-    background: '#d3d3d3',
-  },
-};
-
-const MyComponent = (props) => {
-  console.log('myComponent', props.theData)
-  let data = props.theData;
-  console.log(data)
-  data.map((e)=> console.log('favevoo',e))
-  console.log('hi')
-  
-  return(
-    <div>
-      <button onClick={showMatches} > showMatches </button>
-  <SwipeableViews>
-     {data.map(e => {
-    return(<div style={Object.assign({}, styles.slide, styles.slide1)}>
-
-      <Avatar facebookId={e.facebook_id} size="150" />
-      <p> Name {e.user_name}</p>
-      <p> Tab or Space:  {e.tab}</p>
-      <p> Languages:  {e.languages}</p>
-      <p> Bio:  {e.bio}</p>
-      <button onClick={Like} id={e.facebook_id}> Like </button>
-      <button onClick={unLike}> Dislike </button>
-      {e.gender}
-    </div>)
-     })}
-  </SwipeableViews>
-  </div>
-  )
-}
-
-const Like = e => {
-  console.log(e.id)
-  console.log('like')
-}
-
-const unLike = e => {
-  console.log('DISLIKE')
-}
-
-const showMatches = e => {
-  console.log('matches')
-}
-
-// const Button = (props) => {
-// }
 export default Cards;
-
