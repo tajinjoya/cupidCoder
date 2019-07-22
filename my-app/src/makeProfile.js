@@ -4,35 +4,30 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import './makeProfile.css';
 
-const options = [
+const genderOptions = [
     {
-        value2: "gender",
         value: "Male",
         label: "Male"
     }, {
-        value2: "gender",
         value: "Female",
         label: "Female"
     }, {
-        value2: "gender",
         value: "Programmer",
         label: "Programmer"
     }
 ];
 
-const options2 = [
+const tabsOptions = [
     {
-        value2: "tabspace",
-        value: "tabs",
-        label: "tabs"
+        value: "Tabs",
+        label: "Tabs"
     }, {
-        value2: "tabspace",
-        value: "spaces",
-        label: "spaces"
+        value: "Spaces",
+        label: "Spaces"
     }
 ];
 
-const options3 = [
+const languageOptions = [
     {
         value: "Javascript",
         label: "Javascript"
@@ -59,21 +54,23 @@ class Gender extends React.Component {
         bio: null
     };
 
-    handleChange = selectedOption => {
-        if (selectedOption.value2 === "gender") 
-            this.setState({gender: selectedOption.label});
-        if (selectedOption.value2 === "tabspace") 
-            this.setState({tabs: selectedOption.value});
-        };
+    handleGenderChange = selectedOption => {
+        this.setState({gender: selectedOption.label});
+    };
+
+    handleTabsChange = selectedOption => {
+        this.setState({tabs: selectedOption.value});
+    };
     
-    languageChange = selectedOption => {
+    handleLanguageChange = selectedOption => {
         let obj = [...selectedOption];
         this.setState({languages: obj});
     };
 
-    textChange = event => {
+    handleBioChange = event => {
         this.setState({bio: event.target.value});
     };
+
 
     submitData = () => {
         const cookies = new Cookies();
@@ -81,7 +78,9 @@ class Gender extends React.Component {
         const id = cookies.get("userId");
         const latitude = cookies.get("latitude");
         const longitude = cookies.get("longitude");
-        
+        const facebookName = cookies.get("name");
+        console.log('facebook front ',facebookName);
+
         axios({
             method: "post",
             url: "http://localhost:5000/api/loginInfoNewUser",
@@ -90,7 +89,8 @@ class Gender extends React.Component {
                 Token: token,
                 id: id,
                 Latitude:latitude,
-                Longitude:longitude
+                Longitude:longitude,
+                facebookName:facebookName
             }
         }).then(res => {
             window
@@ -100,38 +100,43 @@ class Gender extends React.Component {
     };
 
     render() {
-        const {gender: selectedOption, tabs: selectedOption2, languages: selectedOption3, bio: selectedOption4} = this.state;
-
+        const {
+            gender: selectedGenderOption, 
+            tabs: selectedTabsOption, 
+            languages: selectedLanguageOptions, 
+            bio: selectedBioOption
+        } = this.state;
         return (
             <div className='root'>
                 <h4>Gender</h4>
+
                 <Select
-                    value={selectedOption}
-                    onChange={this.handleChange}
-                    options={options}
+                    value={selectedGenderOption}
+                    onChange={this.handleGenderChange}
+                    options={genderOptions}
                     placeholder={this.state.gender}/>
                 <h4>Tabs or spaces</h4>
+
                 <Select
-                    value={selectedOption2}
-                    onChange={this.handleChange}
-                    options={options2}
+                    value={selectedTabsOption}
+                    onChange={this.handleTabsChange}
+                    options={tabsOptions}
                     placeholder={this.state.tabs}/>
                 <h4>Languages</h4>
+
                 <Select
                     isMulti
-                    value={selectedOption3}
-                    onChange={this.languageChange}
-                    options={options3}
+                    value={selectedLanguageOptions}
+                    onChange={this.handleLanguageChange}
+                    options={languageOptions}
                     placeholder={this.state.languages}/>
 
                 <textarea
                     rows={this.state.rows}
-                    value={selectedOption4}
+                    value={selectedBioOption}
                     placeholder={'Enter your text here...'}
                     className='textareaProfile'
-                    onBlur={this
-                    .textChange
-                    .bind(this)}/>
+                    onChange={this.handleBioChange.bind(this)}/>
 
                 <span className="spanProfile">
                     <button onClick={this.submitData}>Continue</button>

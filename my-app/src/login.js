@@ -44,7 +44,8 @@ class Login extends React.Component {
         const cookies = new Cookies();
         const responseFacebook = response => {
             console.log("facebook response", response)
-
+            
+            cookies.set("name", response.name, {path: "/"});
             cookies.set("Token", response.accessToken, {path: "/"});
             cookies.set("userId", response.id, {path: "/"});
             const token = cookies.get("Token");

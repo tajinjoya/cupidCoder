@@ -79,7 +79,6 @@ const getGeoMatrix = (ori, des)=>{
   distance.units('imperial');
    
   distance.matrix(origins, destinations, function (err, distances) {
-    console.log(distances);
       if (err) {
           return console.log(err);
       }
@@ -108,7 +107,6 @@ const getGeoMatrix = (ori, des)=>{
 app.post("/api/loginInfoNewUser", authPost, saveUser)
 app.get('/api/allmatches', authGet, getAllUsers)
 app.post("/api/pandingMatch",(req, res)=>{
-  console.log('panding req', req);
 })
 
 app.get('/testdistance', getGeoMatrix);
@@ -117,7 +115,6 @@ app.get('/testgetall', getAllUsers);
 
 async function getAllUsers (req, res) {
   const result = await client.query('SELECT * FROM users').then((res) => {return res.rows})
-  console.log(result);
   // getGeoMatrix()
   res.send(JSON.stringify(result))
   
@@ -142,7 +139,7 @@ async function saveUser (req, res) {
     languageString += language.value + ' ';
   });
   console.log(Latitude+" "+Longitude);
-  await client.query(`INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio, geoLocation) VALUES('Vidar','${req.body.id}','${gender}','${tabs}','${languageString}','Nacka','', '', '${bio}','${Latitude+" "+Longitude}');`)
+  await client.query(`INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio, geoLocation) VALUES('${req.body.facebookName}','${req.body.id}','${gender}','${tabs}','${languageString}','Nacka','', '', '${bio}','${Latitude+" "+Longitude}');`)
   .then(()=> res.send('success'))
   .catch(e => res.send(e))
 }
