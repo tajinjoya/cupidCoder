@@ -102,13 +102,60 @@ const getGeoMatrix = (ori, des)=>{
   });
 }
 
+async function checkMatches (req,res) {
+
+
+
+const {
+  UserId,
+  likedUser
+}= req.body
+
+
+const userOneId = await client.query(`SELECT * FROM users WHERE facebook_id='${UserId}'`).then((res) => {return res.rows[0].id})
+
+let userTwoPending = await client.query(`SELECT * FROM users WHERE id='${likedUser}'`).then((res) => {return res.rows[0].pending_matches})
+
+userTwoPending = userTwoPending.split(',');
+
+let isMatch = userTwoPending.find(e => {
+
+  return e == userOneId;
+});
+console.log('ismatch', isMatch);
+if(isMatch){
+
+  await client.query(`
+  UPDATE users
+  SET matches = matches || '${likedUser}' || ','
+  WHERE id = ${userOneId};
+  `).then((res) => {return res})
+
+  await client.query(`
+  UPDATE users
+  SET matches = matches || '${userOneId}' || ','
+  WHERE id = ${likedUser};
+  `).then((res) => {return res})
+
+console.log('this is a match')
+res.send('Matched');
+} else {
+
+  await client.query(`
+  UPDATE users
+  SET pending_matches = pending_matches || '${likedUser}' || ','
+  WHERE id = ${userOneId};
+  `).then((res) => {return res})
+  res.send('notMatched');
+  console.log('this is not a match')
+}
+}
+
 
 // @router
 app.post("/api/loginInfoNewUser", authPost, saveUser)
 app.get('/api/allmatches', authGet, getAllUsers)
-app.post("/api/pandingMatch",(req, res)=>{
-})
-
+app.post("/api/checkMatch",authPost, checkMatches);
 app.get('/testdistance', getGeoMatrix);
 app.get('/testgetall', getAllUsers);
 
