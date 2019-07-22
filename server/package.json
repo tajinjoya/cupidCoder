@@ -20,6 +20,7 @@
     "express": "4.x.x",
     "express-session": "^1.16.2",
     "github-oauth": "0.x.x",
+    "google-distance-matrix": "^1.1.1",
     "node-fetch": "^2.6.0",
     "passport": "^0.4.0",
     "passport-github2": "^0.1.11",

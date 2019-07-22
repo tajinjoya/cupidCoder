@@ -5,6 +5,8 @@ import Login from './login'
 import Gender from './makeProfile'
 import Home from './home'
 import Card from './Card'
+import Geo from './Geo'
+
 
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
         <Route path="/makeProfile" component={Gender} />
         <Route path="/home" component={Home} />
         <Route path="/card" component={Card} />
+        <Route path="/geo" component={Geo} />
 
       </div>
     </Router>

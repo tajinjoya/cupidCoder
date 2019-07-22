@@ -4,7 +4,8 @@ import Cookies from "universal-cookie";
 import styled from 'styled-components'
 import cupid from './images/cupid.png';
 import './login.css';
-
+//geo info
+import {geolocated} from "react-geolocated";
 
 const Wrapper = styled.section `
   padding: 4em;
@@ -39,9 +40,11 @@ class Login extends React.Component {
     };
 
     render() {
+        //facebook
+        const cookies = new Cookies();
         const responseFacebook = response => {
-            console.log(response)
-            const cookies = new Cookies();
+            console.log("facebook response", response)
+
             cookies.set("Token", response.accessToken, {path: "/"});
             cookies.set("userId", response.id, {path: "/"});
             const token = cookies.get("Token");
@@ -50,6 +53,21 @@ class Login extends React.Component {
 
             this.handleSubmit(token);
         };
+
+        //Get geo location
+        const geo = () => {
+            if (this.props.isGeolocationAvailable) {
+
+                if (this.props.isGeolocationEnabled) {
+
+                    if (this.props.coords) {
+                        cookies.set("latitude", this.props.coords.latitude);
+                        cookies.set("longitude", this.props.coords.longitude);
+                    }
+                }
+            }
+        }
+
         const coder = '<Coder/>'
         const h1 = '<h1>  ';
         const h11 = '  </h1> ';
@@ -58,7 +76,7 @@ class Login extends React.Component {
                 <Content/>
                 <p className='font'>Cupid{coder}</p>
                 <p className='font2'>{h1}Dating app for programmers{h11}</p>
-
+                {geo()}
                 <FacebookLogin
                     cssClass="btnFacebook"
                     appId="2728189017209232"
@@ -72,4 +90,9 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default geolocated({
+    positionOptions: {
+        enableHighAccuracy: false
+    },
+    userDecisionTimeout: 5000
+})(Login);

@@ -11,7 +11,8 @@ CREATE TABLE users(
     user_location VARCHAR,
     pending_matches VARCHAR,
     matches VARCHAR,
-    bio VARCHAR
+    bio VARCHAR,
+    geoLocation VARCHAR
 
 );
 

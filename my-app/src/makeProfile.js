@@ -79,14 +79,18 @@ class Gender extends React.Component {
         const cookies = new Cookies();
         const token = cookies.get("Token");
         const id = cookies.get("userId");
-
+        const latitude = cookies.get("latitude");
+        const longitude = cookies.get("longitude");
+        
         axios({
             method: "post",
             url: "http://localhost:5000/api/loginInfoNewUser",
             data: {
-                name: JSON.stringify(this.state),
+                userInfo: JSON.stringify(this.state),
                 Token: token,
-                id: id
+                id: id,
+                Latitude:latitude,
+                Longitude:longitude
             }
         }).then(res => {
             window
