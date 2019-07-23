@@ -1,0 +1,19 @@
+body {
+
+    font-family: 'Roboto', sans-serif;
+  color: black;
+  font-size: 150%;
+}
+
+.container {
+
+  flex-direction: column;
+}
+
+.sb-avatar {
+    margin-left: 4px !important;
+}
+
+.profile {
+    flex-direction: row;
+}
