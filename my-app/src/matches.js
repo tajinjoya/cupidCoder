@@ -33,7 +33,7 @@ export default class Matches extends React.Component {
       })
       .catch(e => {
         console.log(e);
-      });
+      })
   }
 
   render() {
@@ -46,12 +46,12 @@ export default class Matches extends React.Component {
       let matchInfo = this.state.data;
       if(matchInfo.match !== 'none'){
       data = (
-        <div className="container">
+        <div className="containerName">
           <div onClick={this.homeRoute}> Click to go back </div>{" "}
           {matchInfo.map(p => {
             return (
-              <div className="profile">
-                <Avatar facebookId={p.facebook_id} size="100" round="50px"/>
+              <div className="profilePage1">
+                <Avatar className="matchAvatar" facebookId={p.facebook_id} size="100" round="50px"/>
                 <p> {p.user_name} </p>
               </div>
             );

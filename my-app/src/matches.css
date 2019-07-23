@@ -1,19 +1,19 @@
-body {
+/* body {
 
     font-family: 'Roboto', sans-serif;
   color: black;
   font-size: 150%;
-}
+} */
 
-.container {
+.containerName {
 
   flex-direction: column;
 }
 
-.sb-avatar {
+.matchAvatar {
     margin-left: 4px !important;
 }
 
-.profile {
+.profilePage1 {
     flex-direction: row;
 }
