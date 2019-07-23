@@ -110,7 +110,7 @@ const  getGeoMatrix = async (player1Lat, player1Long, player2Lat, player2Long)=>
           }
         }
       }
-  })});
+  )});
   let awaitPromise = await promiseDistace.then((result)=>{
     return result;
   })
@@ -175,15 +175,16 @@ app.get('/testgetall', getAllUsers);
 app.get('/api/getMatches', getMatches)
 
 async function getMatches(req, res) {
-  const userId = req.cookies.id;
+  const userId = req.cookies.userId;
+  console.log(userId, 'fuck this id');
   let allMatches = await client.query(`SELECT * FROM users WHERE facebook_id='${userId}'`).then((res) => {
     return res.rows[0].matches;
-  })
+  }).catch(e => console.log(e))
 
   //console.log(typeof(allMatches),'allMatches')
   if(allMatches !== ''){
   allMatches = '(' + allMatches + ')';
-  //console.log(allMatches,'allMatches')
+  console.log(allMatches,'allMatches')
   console.log('we have matches')
   let matches = await client.query(`
     SELECT *
@@ -197,12 +198,6 @@ async function getMatches(req, res) {
 }
 
 }
-
-async function getAllUsers(req, res) {
-  const result = await client.query('SELECT * FROM users').then((res) => {
-    return res.rows
-  })
-
 
 async function getAllUsers (req, res) {
   const result = await client.query('SELECT * FROM users').then((res) => {return res.rows})
@@ -267,8 +262,3 @@ console.log('requre console', req.body);
 
 const port = process.env.PORT || 5000
 app.listen(port, () => console.log(`listening on port ${port}`))
-
-
-let yolo = [{distance : '7 km'}, { distance : '5.5 m'}, { distance : '6.5 m'},{distance : '5,3 km'}, {distance : '5 m'}];
-
-
