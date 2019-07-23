@@ -50,9 +50,9 @@ export default class Matches extends React.Component {
           <div onClick={this.homeRoute}> Click to go back </div>{" "}
           {matchInfo.map(p => {
             return (
-              <div className="profilePage1">
+              <div className="inlineDiv">
                 <Avatar className="matchAvatar" facebookId={p.facebook_id} size="100" round="50px"/>
-                <p> {p.user_name} </p>
+                <p className="profilePage1"> {p.user_name} </p>
               </div>
             );
           })}

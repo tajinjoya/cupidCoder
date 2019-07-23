@@ -183,13 +183,14 @@ async function getMatches(req, res) {
 
   //console.log(typeof(allMatches),'allMatches')
   if(allMatches !== ''){
+    console.log('we have matches')
+    console.log(allMatches)
     if(allMatches.charAt(allMatches.length - 1) === ','){
       let newStr = allMatches.substring(0, allMatches.length - 1);
       allMatches = newStr;
     }
   allMatches = '(' + allMatches + ')';
   console.log(allMatches,'allMatches')
-  console.log('we have matches')
   let matches = await client.query(`
     SELECT *
     FROM users
