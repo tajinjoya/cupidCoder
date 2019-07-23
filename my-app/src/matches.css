@@ -11,20 +11,41 @@
 }
 
 .matchAvatar {
+    margin-bottom: 170px !important;
     margin-left: 4px !important;
     
 }
 
 .profilePage1 {
+    height: 100px;
+    width: 220px;
     font-family: 'Roboto', sans-serif;
     color: #262626 !important;
-    font-size: 150%;
+    font-size: 130%;
     display: inline-block;
-    flex-direction: row;
-    
+    margin-left: -20px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin-bottom: 50px;
+}
+
+.profileName{
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: -10px;
+    margin-top: 32px;
+}
+
+.profileBio{
+    font-size: 0.8rem;
+    font-weight: 300;
 }
 
 .inlineDiv {
+    max-height: 115px;
+    margin-left: 10px;
+    margin-right: 10px;
     border-bottom: 1px solid lightgray;
-    padding-bottom: 4px;
+    padding-bottom: 10px;
+    overflow: hidden
 }

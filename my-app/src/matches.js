@@ -48,11 +48,14 @@ export default class Matches extends React.Component {
       data = (
         <div className="containerName">
           <div onClick={this.homeRoute}> Click to go back </div>{" "}
-          {matchInfo.map(p => {
+          {matchInfo.map((p , index) => {
             return (
-              <div className="inlineDiv">
-                <Avatar className="matchAvatar" facebookId={p.facebook_id} size="100" round="50px"/>
-                <p className="profilePage1"> {p.user_name} </p>
+              <div className="inlineDiv" key={index}>
+                <Avatar className="matchAvatar" facebookId={p.facebook_id} size="100" round="50px" />
+                <div className="profilePage1">
+                <p className='profileName'> {p.user_name}</p>
+                <p className='profileBio'>{p.bio}</p>
+                </div>
               </div>
             );
           })}
