@@ -69,16 +69,21 @@ const authPost = function (req, res, next) {
 };
 
 //get distance
+const  getGeoMatrix = async (player1Lat, player1Long, player2Lat, player2Long)=>{
+  let toStringPlyerOneLat = player1Lat.toString();
+  let toStringPlyerOneLong = player1Long.toString();
+  let toStringPlyerTwoLat = player2Lat.toString();
+  let toStringPlyerTwoLong = player2Long.toString();
 
-const getGeoMatrix = (ori, des)=>{
   //latitude/longitude 
-  let origins = [ '59.334590000000006 18.0664998']
-  let destinations=['59.994590000000006 18.0664998']
+  let origins = [toStringPlyerOneLat+' '+toStringPlyerOneLong]
+  let destinations=[toStringPlyerTwoLat+' '+toStringPlyerTwoLong]
   
+  // let origins = [toStringOne]
+  // let destinations=[toStringTwo]
   distance.key('AIzaSyBiXc2hsL2tQnsGAxGftKxxuVcboW43DQM');
-  distance.units('imperial');
-   
-  distance.matrix(origins, destinations, function (err, distances) {
+  distance.units('metric');
+  let promiseDistace = new Promise ((resolve,reject)=>{distance.matrix(origins, destinations,  function (err, distances) {
       if (err) {
           return console.log(err);
       }
@@ -88,24 +93,25 @@ const getGeoMatrix = (ori, des)=>{
       if (distances.status == 'OK') {
           for (var i=0; i < origins.length; i++) {
               for (var j = 0; j < destinations.length; j++) {
-                  var origin = distances.origin_addresses[i];
-                  var destination = distances.destination_addresses[j];
+                  // var origin = distances.origin_addresses[i];
+                  // var destination = distances.destination_addresses[j];
                   if (distances.rows[0].elements[j].status == 'OK') {
                       var distance = distances.rows[i].elements[j].distance.text;
-                      console.log('Distance from ' + origin + ' to ' + destination + ' is ' + distance);
+                      resolve(distance);
                   } else {
-                      console.log(destination + ' is not reachable by land from ' + origin);
+                      reject('error')
                   }
               }
           }
       }
-  });
+  })});
+  let awaitPromise = await promiseDistace.then((result)=>{
+    return result;
+  })
+  return awaitPromise
 }
 
 async function checkMatches (req,res) {
-
-
-
 const {
   UserId,
   likedUser
@@ -113,13 +119,9 @@ const {
 
 
 const userOneId = await client.query(`SELECT * FROM users WHERE facebook_id='${UserId}'`).then((res) => {return res.rows[0].id})
-
 let userTwoPending = await client.query(`SELECT * FROM users WHERE id='${likedUser}'`).then((res) => {return res.rows[0].pending_matches})
-
 userTwoPending = userTwoPending.split(',');
-
 let isMatch = userTwoPending.find(e => {
-
   return e == userOneId;
 });
 console.log('ismatch', isMatch);
@@ -156,19 +158,42 @@ res.send('Matched');
 app.post("/api/loginInfoNewUser", authPost, saveUser)
 app.get('/api/allmatches', authGet, getAllUsers)
 app.post("/api/checkMatch",authPost, checkMatches);
+
 app.get('/testdistance', getGeoMatrix);
 app.get('/testgetall', getAllUsers);
 
 
+
+
 async function getAllUsers (req, res) {
   const result = await client.query('SELECT * FROM users').then((res) => {return res.rows})
-  // getGeoMatrix()
-  res.send(JSON.stringify(result))
+  const playerOneLatitude = req.cookies.latitude.toString();
+  const playerOneLongitude = req.cookies.longitude.toString()
+  for (let i = 0; i < result.length; i++) {
+    let distancePlayers = await getGeoMatrix(playerOneLatitude, playerOneLongitude, result[i].latitude, result[i].longitude)
+    result[i].distanceFromPlayerOne= distancePlayers
+  }
+  let finalDataMeter= [];
+  let finalDataKilloMeter= [];
+  result.forEach(e => {
+    if(/(\d+).?(\d*)\s*(m)/g.test(e.distanceFromPlayerOne)){finalDataMeter.push(e)} ;
+  });
+  result.forEach(e => {
+    if(/(\d+).?(\d*)\s*(km)/g.test(e.distanceFromPlayerOne)){finalDataKilloMeter.push(e)} ;
+  });
+
+  let sortMeter = finalDataMeter.sort((a,b)=> {return parseInt(a.distanceFromPlayerOne)-parseInt(b.distanceFromPlayerOne)})
+  let sortKm = finalDataKilloMeter.sort((a,b)=> {return parseInt(a.distanceFromPlayerOne)-parseInt(b.distanceFromPlayerOne)})
+  let mergeArray = [...sortMeter,...sortKm]
+
+  
+  res.send(JSON.stringify(mergeArray))
   
 }
 
-async function saveUser (req, res) {
 
+
+async function saveUser (req, res) {
   let languageString = '';
   const received = JSON.parse(req.body.userInfo)
   const {
@@ -177,7 +202,6 @@ async function saveUser (req, res) {
     languages,
     bio,
   } = received;
-
   const {
     Latitude,
     Longitude
@@ -185,10 +209,20 @@ async function saveUser (req, res) {
   languages.forEach(language => {
     languageString += language.value + ' ';
   });
-  console.log(Latitude+" "+Longitude);
-  await client.query(`INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio, geoLocation) VALUES('${req.body.facebookName}','${req.body.id}','${gender}','${tabs}','${languageString}','Nacka','', '', '${bio}','${Latitude+" "+Longitude}');`)
+console.log('requre console', req.body);
+
+  await client.query(`INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio, latitude, longitude) VALUES('${req.body.facebookName}','${req.body.id}','${gender}','${tabs}','${languageString}','Nacka','', '', '${bio}','${Latitude}', '${Longitude}');`)
   .then(()=> res.send('success'))
   .catch(e => res.send(e))
+
+  const userOneId = await client.query(`SELECT * FROM users WHERE facebook_id='${req.body.id}'`).then((res) => {return res.rows[0].id})
+
+  //gps data of player 1 must be uppdated
+  await client.query(`
+  UPDATE users
+  SET latitude = '${Latitude}',longitude = '${Longitude}'
+  WHERE id = ${userOneId};
+  `).then((res) => {return res})
 }
 
 

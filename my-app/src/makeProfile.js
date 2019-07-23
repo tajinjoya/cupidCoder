@@ -79,7 +79,7 @@ class Gender extends React.Component {
         const latitude = cookies.get("latitude");
         const longitude = cookies.get("longitude");
         const facebookName = cookies.get("name");
-        console.log('facebook front ',facebookName);
+console.log('check cookies', latitude,longitude);
 
         axios({
             method: "post",
