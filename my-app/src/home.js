@@ -31,7 +31,9 @@ class home extends React.Component {
     }
 
     goToMessages () {
-
+        window
+        .location
+        .replace("http://localhost:3000/matches");
     }
 
 

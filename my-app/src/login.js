@@ -33,7 +33,10 @@ class Login extends React.Component {
             data: ""
         };
     }
-    handleSubmit = event => {
+    handleSubmit = (event) => {
+
+        
+
         window
             .location
             .replace("http://localhost:3000/makeProfile");
@@ -78,7 +81,7 @@ class Login extends React.Component {
                 {geo()}
                 <FacebookLogin
                     cssClass="btnFacebook"
-                    appId="2728189017209232"
+                    appId="2929682047105289"
                     fields="name,email,picture"
                     icon="fa-facebook"
                     callback={responseFacebook}/>

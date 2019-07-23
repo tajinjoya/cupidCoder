@@ -4,7 +4,9 @@ const cookieParser = require('cookie-parser')
 const fetch = require('node-fetch');
 const cors = require('cors')
 const distance = require('google-distance-matrix');
-const {Client} = require('pg');
+const {
+  Client
+} = require('pg');
 
 
 const client = new Client({
@@ -24,7 +26,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({
+  credentials: true,
+  origin: 'http://localhost:3000'
+}));
 
 app.use(express.json({
   extended: false
@@ -103,6 +108,7 @@ const  getGeoMatrix = async (player1Lat, player1Long, player2Lat, player2Long)=>
                   }
               }
           }
+        }
       }
   })});
   let awaitPromise = await promiseDistace.then((result)=>{
@@ -127,42 +133,75 @@ let isMatch = userTwoPending.find(e => {
 console.log('ismatch', isMatch);
 if(isMatch){
 
-  await client.query(`
+    await client.query(`
   UPDATE users
   SET matches = matches || '${likedUser}' || ','
   WHERE id = ${userOneId};
-  `).then((res) => {return res})
+  `).then((res) => {
+      return res
+    })
 
-  await client.query(`
+    await client.query(`
   UPDATE users
   SET matches = matches || '${userOneId}' || ','
   WHERE id = ${likedUser};
-  `).then((res) => {return res})
+  `).then((res) => {
+      return res
+    })
 
-console.log('this is a match')
-res.send('Matched');
-} else {
+    console.log('this is a match')
+    res.send('Matched');
+  } else {
 
-  await client.query(`
+    await client.query(`
   UPDATE users
   SET pending_matches = pending_matches || '${likedUser}' || ','
   WHERE id = ${userOneId};
-  `).then((res) => {return res})
-  res.send('notMatched');
-  console.log('this is not a match')
-}
+  `).then((res) => {
+      return res
+    })
+    res.send('notMatched');
+    console.log('this is not a match')
+  }
 }
 
 
 // @router
 app.post("/api/loginInfoNewUser", authPost, saveUser)
 app.get('/api/allmatches', authGet, getAllUsers)
-app.post("/api/checkMatch",authPost, checkMatches);
-
+app.post("/api/checkMatch", authPost, checkMatches);
 app.get('/testdistance', getGeoMatrix);
 app.get('/testgetall', getAllUsers);
+app.get('/api/getMatches', getMatches)
 
+async function getMatches(req, res) {
+  const userId = req.cookies.id;
+  let allMatches = await client.query(`SELECT * FROM users WHERE facebook_id='${userId}'`).then((res) => {
+    return res.rows[0].matches;
+  })
 
+  //console.log(typeof(allMatches),'allMatches')
+  if(allMatches !== ''){
+  allMatches = '(' + allMatches + ')';
+  //console.log(allMatches,'allMatches')
+  console.log('we have matches')
+  let matches = await client.query(`
+    SELECT *
+    FROM users
+    where id in ${allMatches}`).then((res) => {
+    return res.rows;
+  }).then(matches => res.send(JSON.stringify(matches)))
+} else {
+  console.log('no matches')
+  res.send('{"match" : "none"}');
+}
+
+}
+
+async function getAllUsers(req, res) {
+  const result = await client.query('SELECT * FROM users').then((res) => {
+    return res.rows
+  })
 
 
 async function getAllUsers (req, res) {
@@ -192,7 +231,6 @@ async function getAllUsers (req, res) {
 }
 
 
-
 async function saveUser (req, res) {
   let languageString = '';
   const received = JSON.parse(req.body.userInfo)
@@ -205,7 +243,7 @@ async function saveUser (req, res) {
   const {
     Latitude,
     Longitude
-  }= req.body
+  } = req.body
   languages.forEach(language => {
     languageString += language.value + ' ';
   });
@@ -229,4 +267,8 @@ console.log('requre console', req.body);
 
 const port = process.env.PORT || 5000
 app.listen(port, () => console.log(`listening on port ${port}`))
+
+
+let yolo = [{distance : '7 km'}, { distance : '5.5 m'}, { distance : '6.5 m'},{distance : '5,3 km'}, {distance : '5 m'}];
+
 
