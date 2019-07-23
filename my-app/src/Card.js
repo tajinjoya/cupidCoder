@@ -88,6 +88,8 @@ class Cards extends Component {
                                 </li>
                                 <li className="tabs">T&S: {d.tab}
                                 </li>
+                                <li className="tabs">T&S: {d.distanceFromPlayerOne}
+                                </li>
                             </ul>
                             <p className="languages">languages: {d.languages}
                             </p>

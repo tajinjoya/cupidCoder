@@ -46,8 +46,7 @@ class Login extends React.Component {
         //facebook
         const cookies = new Cookies();
         const responseFacebook = response => {
-            console.log("facebook response", response)
-            
+
             cookies.set("name", response.name, {path: "/"});
             cookies.set("Token", response.accessToken, {path: "/"});
             cookies.set("userId", response.id, {path: "/"});
@@ -60,10 +59,9 @@ class Login extends React.Component {
 
         //Get geo location
         const geo = () => {
+            console.log('1');
             if (this.props.isGeolocationAvailable) {
-
                 if (this.props.isGeolocationEnabled) {
-
                     if (this.props.coords) {
                         cookies.set("latitude", this.props.coords.latitude);
                         cookies.set("longitude", this.props.coords.longitude);
