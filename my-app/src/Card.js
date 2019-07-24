@@ -17,6 +17,7 @@ class Cards extends Component {
       data: this.props.allData,
       open: false,
       name: '',
+      lTest : 'Java Android'
 
     };
 
@@ -94,7 +95,7 @@ class Cards extends Component {
                 
                 </li>
               </ul>
-              <p className="languages" > <div className={d.languages}></div>
+              <p className={this.state.lTest} > <div className={this.state.lTest}></div>
               {console.log('language', d.languages)}
               </p>
              

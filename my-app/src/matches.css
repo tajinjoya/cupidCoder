@@ -16,10 +16,10 @@
     color: #262626 !important;
     font-size: 130%;
     display: inline-block;
-    margin-left: -20px;
+    margin-left: 10px;
     overflow-x: hidden;
     overflow-y: hidden;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .profileName{
@@ -45,26 +45,34 @@
 
 .bodyMatcher {
     height: 667px;
-    background: url('./images/programming4.png');
-    background-repeat: no-repeat;
-    background-position: right bottom; 
 }
 
 .goBackHome {
     display: inline-block;
-
-    margin-right: 200px;
-    margin-left: 10px;
-    height: 50px;
-    width: 50px;
+    margin-top: 7px;
+    margin-left: 12px;
+    height: 64px;
+    width: 64px;
     background: url('./images/home.png');
+    background-repeat: no-repeat;
 }
 
 .messageIcon {
-    margin-top: 6px;
+    margin-top: 7px;
     float:right;
-    margin-right: 10px;
-    height: 48px;
-    width: 45px;
+    margin-right: 5px;
+    height: 64px;
+    width: 64px;
     background: url('./images/love.png');
+    background-repeat: no-repeat;
+
+}
+
+.noMatchesSad {
+    height: 400px;
+    width: 300px;
+    margin-left: 60px;
+    margin-top: 200px;
+    background: url('./images/sad-robot.png');
+    background-repeat: no-repeat;
 }
