@@ -21,34 +21,46 @@ class home extends React.Component {
 
             return result.json();
         }).then(res => {
-            // setTimeout(() => {
+
+            setTimeout(() => {
             this.setState({data: res, loading: false});
-            // }, 3500); console.log('home-data',this.state.data);
+            }, 3500); console.log('home-data',this.state.data);
         }).catch(e => {
             console.log(e);
         });
-
     }
-
-    goToMessages () {
+    
+    goToMessages() {
         window
-        .location
-        .replace("http://localhost:3000/matches");
+            .location
+            .replace("http://localhost:3000/matches");
     }
-
 
     render() {
 
         let data;
         if (this.state.loading) {
-            data = <Sppiner/>
+                data = <div className="overflowBody">
+                <div className="HomeButton"></div>
+                <div className="Messages" onClick={this.goToMessages}></div>
+                <Sppiner/>
+                <div className="homeSpace"></div>
+                <div className="likeButton"></div>
+                <div className="dislikeButton"></div>
+                <div className="nextButton"></div>
+
+            </div>
 
         } else {
             data = <div className="overflowBody">
+                <div className="HomeButton"></div>
                 <div className="Messages" onClick={this.goToMessages}></div>
                 <Cards allData={this.state.data}/>
+                {console.log('hi',this.state.data)}
                 <div className="likeButton"></div>
                 <div className="dislikeButton"></div>
+                <div className="nextButton"></div>
+
             </div>
 
         }
