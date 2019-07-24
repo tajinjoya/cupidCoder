@@ -44,6 +44,27 @@ const languageOptions = [
         value: "Java",
         label: "Java"
     }
+    , {
+        value: "Cplus",
+        label: "C++"
+    }
+    , {
+        value: "PHP",
+        label: "PHP"
+    }
+    , {
+        value: "cshop",
+        label: "C#"
+    }
+    , {
+        value: "Swift",
+        label: "Swift"
+    }
+    , {
+        value: "SQL",
+        label: "SQL"
+    }
+    
 ];
 
 class Gender extends React.Component {
