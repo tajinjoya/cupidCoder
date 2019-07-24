@@ -197,21 +197,18 @@ async function checkIfExist(req, res) {
 
 async function getMatches(req, res) {
   const userId = req.cookies.userId;
-  console.log(userId, 'fuck this id');
+
   let allMatches = await client.query(`SELECT * FROM users WHERE facebook_id='${userId}'`).then((res) => {
     return res.rows[0].matches;
   }).catch(e => console.log(e))
 
-  //console.log(typeof(allMatches),'allMatches')
   if (allMatches !== '') {
-    console.log('we have matches')
-    console.log(allMatches)
+
     if (allMatches.charAt(allMatches.length - 1) === ',') {
       let newStr = allMatches.substring(0, allMatches.length - 1);
       allMatches = newStr;
     }
     allMatches = '(' + allMatches + ')';
-    console.log(allMatches, 'allMatches')
     let matches = await client.query(`
     SELECT *
     FROM users
@@ -228,9 +225,24 @@ async function getMatches(req, res) {
 async function getAllUsers(req, res) {
   console.log(req.cookies.userId)
   const id = req.cookies.userId;
-  const result = await client.query(`select * from users where facebook_id != '${id}'`).then((res) => {
+
+//   let alreadyMatched = await client.query(`SELECT * FROM users WHERE facebook_id='${id}'`).then((res) => {
+//     return res.rows[0].matches
+//   })
+//   if (alreadyMatched !== '') {
+
+//     if (alreadyMatched.charAt(alreadyMatched.length - 1) === ',') {
+//       let newStr = alreadyMatched.substring(0, alreadyMatched.length - 1);
+//       alreadyMatched = newStr;
+//     }
+//     alreadyMatched = '(' + alreadyMatched + ')';
+//   }
+// console.log(alreadyMatched)
+
+  const result = await client.query(`SELECT * FROM users WHERE facebook_id != '${id}'`).then((res) => {
     return res.rows
   }).catch(e => console.log(e))
+
   const playerOneLatitude = req.cookies.latitude.toString();
   const playerOneLongitude = req.cookies.longitude.toString()
   for (let i = 0; i < result.length; i++) {

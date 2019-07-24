@@ -46,7 +46,8 @@ export default class Matches extends React.Component {
       data = (
           <div className="bodyMatcher">
         <div className="containerName">
-          <div onClick={this.homeRoute}> Click to go back </div>
+          <div className="goBackHome" onClick={this.homeRoute}> </div>
+          <div className="messageIcon"> </div>
           {matchInfo.map((p , index) => {
             return (
               <div className="inlineDiv" key={index}>
