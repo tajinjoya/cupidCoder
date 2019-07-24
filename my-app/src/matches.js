@@ -3,7 +3,6 @@ import Sppiner from "./Sppiner";
 import Avatar from "react-avatar";
 import "./matches.css";
 
-const testInfo = ["namenamenamenm", "chachachachacha", "tajintajintajintajin"];
 export default class Matches extends React.Component {
   constructor(props) {
     super(props);
@@ -37,8 +36,7 @@ export default class Matches extends React.Component {
   }
 
   render() {
-    console.log(testInfo);
-    //console.log(matchInfo);
+    console.log(this.state.data)
     let data;
     if (this.state.loading) {
       data = <Sppiner />;
@@ -46,16 +44,22 @@ export default class Matches extends React.Component {
       let matchInfo = this.state.data;
       if(matchInfo.match !== 'none'){
       data = (
+          <div className="bodyMatcher">
         <div className="containerName">
-          <div onClick={this.homeRoute}> Click to go back </div>{" "}
-          {matchInfo.map(p => {
+          <div className="goBackHome" onClick={this.homeRoute}> </div>
+          <div className="messageIcon"> </div>
+          {matchInfo.map((p , index) => {
             return (
-              <div className="inlineDiv">
-                <Avatar className="matchAvatar" facebookId={p.facebook_id} size="100" round="50px"/>
-                <p className="profilePage1"> {p.user_name} </p>
+              <div className="inlineDiv" key={index}>
+                <Avatar facebookId={p.facebook_id} className="matchAvatar" size="102" round="50px"/>
+                <div className="profilePage1">
+                <p className='profileName'> {p.user_name}</p>
+                <p className='profileBio'>{p.bio} </p>
+                </div>
               </div>
             );
           })}
+        </div>
         </div>
       );
         } else {

@@ -126,7 +126,7 @@ class Cards extends Component {
               <p>have liked each other!</p>
               <div className="heartGif">
               {/* <img src={logo} alt="loading..." /> */}
-              <img className="gif"src="https://media.giphy.com/media/3WuYqcEnVxoYVyrMVM/giphy.gif"></img>
+              <img className="gif"src="https://media.giphy.com/media/3WuYqcEnVxoYVyrMVM/giphy.gif" alt="no"></img>
               </div>
             </div>
             </div>

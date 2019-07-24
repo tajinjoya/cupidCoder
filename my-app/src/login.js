@@ -1,16 +1,16 @@
 import React from "react";
 import FacebookLogin from "react-facebook-login";
 import Cookies from "universal-cookie";
-import styled from 'styled-components'
-import cupid from './images/cupid.png';
-import './login.css';
+import styled from "styled-components";
+import cupid from "./images/cupid.png";
+import "./login.css";
 //geo info
-import {geolocated} from "react-geolocated";
+import { geolocated } from "react-geolocated";
 
-const Wrapper = styled.section `
+const Wrapper = styled.section`
   padding: 4em;
   font-size: 1.5em;
-  color:white;
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,57 +18,66 @@ const Wrapper = styled.section `
   background: radial-gradient(circle at 9% 100%, #ff4545, #f98b60);
   font-size: 2em;
 `;
-const Content = styled.div `
-    background-image: url(${cupid});
-    width: 70px;
-    height: 65px;
-    background-repeat: no-repeat;
-
-    `
+const Content = styled.div`
+  background-image: url(${cupid});
+  width: 70px;
+  height: 65px;
+  background-repeat: no-repeat;
+`;
 
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: ""
-        };
-    }
-    handleSubmit = (event) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: "",
+      exist: "false"
+    };
+  }
+  handleSubmit = event => {
+    fetch("http://localhost:5000/api/checkAccount", { credentials: "include" })
+      .then(result => {
+        return result.json();
+      })
+      .then(res => {
+        console.log("hello");
+        console.log(res);
+        if (res.exist === "true") {
+          window.location.replace("http://localhost:3000/home");
+        } else {
+          window.location.replace("http://localhost:3000/makeProfile");
+        }
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    console.log("no");
+  };
 
-        
+  render() {
+    const cookies = new Cookies();
+    const responseFacebook = response => {
+      cookies.set("name", response.name, { path: "/" });
+      cookies.set("Token", response.accessToken, { path: "/" });
+      cookies.set("userId", response.id, { path: "/" });
+      const token = cookies.get("Token");
 
-        window
-            .location
-            .replace("http://localhost:3000/makeProfile");
+      this.setState({ data: response });
+
+      this.handleSubmit(token);
     };
 
-    render() {
-        //facebook
-        const cookies = new Cookies();
-        const responseFacebook = response => {
-
-            cookies.set("name", response.name, {path: "/"});
-            cookies.set("Token", response.accessToken, {path: "/"});
-            cookies.set("userId", response.id, {path: "/"});
-            const token = cookies.get("Token");
-
-            this.setState({data: response});
-
-            this.handleSubmit(token);
-        };
-
-        //Get geo location
-        const geo = () => {
-            console.log('1');
-            if (this.props.isGeolocationAvailable) {
-                if (this.props.isGeolocationEnabled) {
-                    if (this.props.coords) {
-                        cookies.set("latitude", this.props.coords.latitude);
-                        cookies.set("longitude", this.props.coords.longitude);
-                    }
-                }
-            }
+    //Get geo location
+    const geo = () => {
+      if (this.props.isGeolocationAvailable) {
+        if (this.props.isGeolocationEnabled) {
+          if (this.props.coords) {
+            cookies.set("latitude", this.props.coords.latitude);
+            cookies.set("longitude", this.props.coords.longitude);
+          }
         }
+      }
+    };
+
 
         const coder = '<Coder/>'
         const h1 = '<h1>  ';
@@ -90,11 +99,12 @@ class Login extends React.Component {
 
         );
     }
+
 }
 
 export default geolocated({
-    positionOptions: {
-        enableHighAccuracy: false
-    },
-    userDecisionTimeout: 5000
+  positionOptions: {
+    enableHighAccuracy: false
+  },
+  userDecisionTimeout: 5000
 })(Login);
