@@ -1,6 +1,7 @@
 .containerName {
 
   flex-direction: column;
+  background-color: #f4f6f6;
 }
 
 .matchAvatar {
@@ -20,6 +21,7 @@
     overflow-x: hidden;
     overflow-y: hidden;
     margin-bottom: 40px;
+    pointer-events: none;
 }
 
 .profileName{
@@ -27,11 +29,13 @@
     font-weight: 400;
     margin-bottom: -10px;
     margin-top: 32px;
+    pointer-events: none;
 }
 
 .profileBio{
     font-size: 0.8rem;
     font-weight: 300;
+    pointer-events: none;
 }
 
 .inlineDiv {
