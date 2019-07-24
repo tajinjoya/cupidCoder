@@ -121,10 +121,11 @@ class Cards extends Component {
         <Popup className="popupClass" open={this.state.open} closeOnDocumentClick onClose={this.closeModal}>
           <  div className="popup">
             <div className="matchFound">
-             <p>
-              Congratulations!
+             <p className="wtMatch">
+              Wow! what a match!
                </p> 
-            <div>
+            
+            <div className="restText">
               <p>You and </p>
               <p>{this.state.name}</p>
               <p>have liked each other!</p>
