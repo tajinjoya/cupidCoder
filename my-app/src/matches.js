@@ -8,7 +8,8 @@ export default class Matches extends React.Component {
     super(props);
     this.state = {
       data: [],
-      loading: true
+      loading: true,
+      name: 'yolo',
     };
   }
 
@@ -27,7 +28,8 @@ export default class Matches extends React.Component {
         console.log(res);
         this.setState({
           data: res,
-          loading: false
+          loading: false,
+          renderId : '',
         });
       })
       .catch(e => {
@@ -35,7 +37,16 @@ export default class Matches extends React.Component {
       });
   }
 
+  getProfileInfo(e){
+      console.log(e.id)
+      console.log('lol')
+
+    //   window.open(`/getProfile:${this.props.name}`);
+  }
   render() {
+    //   const getProfileInfo = (e) => {
+    //     console.log(e.target)
+    //   };
     console.log(this.state.data);
     let data;
     if (this.state.loading) {
@@ -52,7 +63,7 @@ export default class Matches extends React.Component {
               <div className="messageIcon"> </div>
               {matchInfo.map((p, index) => {
                 return (
-                  <div className="inlineDiv" key={index}>
+                  <div className="inlineDiv" key={index} onClick={this.getProfileInfo.bind(this)}>
                     <Avatar
                       facebookId={p.facebook_id}
                       className="matchAvatar"
