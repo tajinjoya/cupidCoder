@@ -258,19 +258,23 @@ div .matchButton {
     background-repeat: no-repeat;
     background-image: url("./images/python.png");
     height: 30px;
-    width: 30px;
+    width: 25px;
+    margin-top: 3px;
 }
 .Cplus{
     background-repeat: no-repeat;
     background-image: url("./images/c++.png");
-    height: 30px;
+    height: 25px;
     width: 30px;
+    margin-top: 4px;
 }
 .PHP{
     background-repeat: no-repeat;
     background-image: url("./images/php.png");
-    height: 30px;
+    height: 25px;
     width: 30px;
+    margin-top: 4px;
+    margin-left: 6px;
 }
 .Swift{
     background-repeat: no-repeat;
@@ -281,20 +285,25 @@ div .matchButton {
 .cshop{
     background-repeat: no-repeat;
     background-image: url("./images/cshop.png");
-    height: 30px;
+    height: 25px;
     width: 30px;
+    margin-top: 4px;
 }
 .SQL{
     background-repeat: no-repeat;
     background-image: url("./images/SQL.png");
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
+    margin-top: 4px;
+
 }
 .Typescript{
     background-repeat: no-repeat;
     background-image: url("./images/Typescript.png");
     height: 30px;
     width: 30px;
+    margin-top: 3px;
+    margin-left: 4px;
 }
 
 .Javascript{
