@@ -78,30 +78,28 @@ class Login extends React.Component {
       }
     };
 
-    const coder = "<Coder/>";
-    const h1 = "<h1>  ";
-    const h11 = "  </h1> ";
-    return (
-      <Wrapper>
-        <Content />
-        <p className="font">Cupid{coder}</p>
-        <p className="font2">
-          {h1}Dating app for programmers{h11}
-        </p>
-        {geo()}
-        <FacebookLogin
-          cssClass="btnFacebook"
-          appId="2929682047105289"
-          fields="name,email,picture"
-          icon="fa-facebook"
-          callback={responseFacebook}
-        />
-        <p className="font3">
-          By logging in, you agree to our Terms and Privacy Policy
-        </p>
-      </Wrapper>
-    );
-  }
+
+        const coder = '<Coder/>'
+        const h1 = '<h1>  ';
+        const h11 = '  </h1> ';
+        return (
+            <Wrapper>
+                <Content/>
+                <p className='font'>Cupid{coder}</p>
+                <p className='font2'>{h1}Dating app for programmers{h11}</p>
+                {geo()}
+                <FacebookLogin
+                    cssClass="btnFacebook"
+                    appId="2728189017209232"
+                    fields="name,email,picture"
+                    icon="fa-facebook"
+                    callback={responseFacebook}/>
+                <p className='font3'>By logging in, you agree to our Terms and Privacy Policy</p>
+            </Wrapper>
+
+        );
+    }
+
 }
 
 export default geolocated({

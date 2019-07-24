@@ -84,22 +84,24 @@ class Cards extends Component {
           .bind(this)}
           data={d}>
           <div className="pleaseDont">
-            <Avatar facebookId={d.facebook_id} size="250" round="10px"/>
-            <h3 className="userName">{d.user_name}</h3>
+            <Avatar facebookId={d.facebook_id} size="330" round="2px"/>
+            <h3 className="userName">{d.user_name}<div className={d.gender}></div></h3>
             <div className="aDIV">
               <ul>
                 <li className="gender">Gender: {d.gender}
                 </li>
                 <li className="tabs">T&S: {d.tab} {d.distanceFromPlayerOne}
+                
                 </li>
               </ul>
-              <p className="languages">languages: {d.languages}
+              <p className="languages" > <div className={d.languages}></div>
+              {console.log('language', d.languages)}
               </p>
-              <p className="bio">{d.bio}</p>
+             
             </div>
 ​
           </div>
-​
+​         
         </Card>
 
       );
