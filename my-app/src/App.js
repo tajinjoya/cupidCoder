@@ -7,6 +7,7 @@ import Home from './home'
 import Card from './Card'
 import Geo from './Geo'
 import Matches from './matches'
+import profileInfo  from './profileInfo'
 
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/card" component={Card} />
         <Route path="/geo" component={Geo} />
         <Route path="/matches" component={Matches} />
+        <Route path="/getProfile:id" component={profileInfo} />
 
       </div>
     </Router>

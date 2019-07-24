@@ -179,6 +179,16 @@ app.get('/testdistance', getGeoMatrix);
 app.get('/testgetall', getAllUsers);
 app.get('/api/getMatches', getMatches)
 app.get('/api/checkAccount', checkIfExist)
+app.get('/api/getProfile', getProfile);
+
+async function getProfile(req, res){
+  const userId = req.cookies.userId;
+  let theMatch = await client.query(`SELECT * FROM users WHERE facebook_id='${userId}'`).then((res) => {
+    return res.rows;
+  }).catch(e => console.log(e))
+
+  res.send(JSON.stringify(theMatch));
+}
 
 async function checkIfExist(req, res) {
   const userId = req.cookies.userId;
@@ -225,8 +235,28 @@ async function getMatches(req, res) {
 async function getAllUsers(req, res) {
   console.log(req.cookies.userId)
   const id = req.cookies.userId;
+  let bigString = '';
+  let allMatches = await client.query(`SELECT * FROM users WHERE facebook_id='${id}'`).then((res) => {
+    return res.rows[0].matches;
+  }).catch(e => console.log(e))
 
-  const result = await client.query(`SELECT * FROM users WHERE facebook_id != '${id}'`).then((res) => {
+  if (allMatches !== '') {
+
+    if (allMatches.charAt(allMatches.length - 1) === ',') {
+      let newStr = allMatches.substring(0, allMatches.length - 1);
+      allMatches = newStr;
+    }
+
+    allMatches = allMatches.split(',');
+   console.log(allMatches)
+   for(let i = 0; i < allMatches.length; i++){
+    let str =  `AND id != ${allMatches[i]} `;
+    bigString += str;
+   }
+   console.log(bigString)
+  }
+
+  const result = await client.query(`SELECT * FROM users WHERE (facebook_id != '${id}' ${bigString})`).then((res) => {
     return res.rows
   }).catch(e => console.log(e, 'this is ereror'))
 
