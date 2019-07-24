@@ -44,9 +44,9 @@ class home extends React.Component {
                 <div className="Messages" onClick={this.goToMessages}></div>
                 <Sppiner/>
                 <div className="homeSpace"></div>
-                <div className="likeButton"></div>
-                <div className="dislikeButton"></div>
-                <div className="nextButton"></div>
+                <div className="likeButton2"></div>
+                <div className="dislikeButton2"></div>
+                <div className="nextButton2"></div>
 
             </div>
 

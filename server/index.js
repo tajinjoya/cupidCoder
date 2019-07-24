@@ -103,7 +103,13 @@ const getGeoMatrix = async (player1Lat, player1Long, player2Lat, player2Long) =>
             // var destination = distances.destination_addresses[j];
             if (distances.rows[0].elements[j].status == 'OK') {
               var distance = distances.rows[i].elements[j].distance.text;
-              resolve(distance);
+
+              var address = distances.destination_addresses.join();
+              let shortAddress = address.replace(/\d/g, '').replace(/\s+/g, '').replace(/UnnamedRoad,/g, '').replace(/,Sweden/g, '');
+              let finalResult =distance+' / '+shortAddress;
+              console.log('finalResult', finalResult);
+
+              resolve(finalResult);
             } else {
               reject('error')
             }
@@ -234,6 +240,7 @@ async function getAllUsers(req, res) {
   const playerOneLongitude = req.cookies.longitude.toString()
   for (let i = 0; i < result.length; i++) {
     let distancePlayers = await getGeoMatrix(playerOneLatitude, playerOneLongitude, result[i].latitude, result[i].longitude)
+    
     result[i].distanceFromPlayerOne = distancePlayers
   }
   let finalDataMeter = [];

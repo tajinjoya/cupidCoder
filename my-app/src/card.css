@@ -91,7 +91,7 @@ ul {
     padding-bottom: 5px;
 }
 .languages {
-    margin-top: 6px;
+    margin-top: 0px;
     height: 100%;
     overflow: auto;
     margin-left: 40px;
@@ -100,6 +100,7 @@ ul {
     border-bottom: 1px solid lightgray;
     padding-bottom: 5px;
     pointer-events: none;
+    font-size: 12px;
 }
 .pleaseDont {
     pointer-events: none;
@@ -147,7 +148,7 @@ ul {
     width: 64px;
     background-image: url("./images/like.png");
     margin-right: 65px;
-    margin-top: -150px;
+    margin-top: -130px;
 }
 
 
@@ -158,7 +159,7 @@ ul {
     width: 64px;
     background-image: url("./images/cancel.png");
     margin-left: 65px;
-    margin-top: -150px;
+    margin-top: -130px;
     
 }
 .nextButton {
@@ -168,9 +169,45 @@ ul {
     width: 80px;
     background-image: url("./images/next.png");
     margin-left: 150px;
-    margin-top: -158px;
+    margin-top: -140px;
     
 }
+
+
+.likeButton2 {
+    
+    float: right;
+    height: 64px;
+    width: 64px;
+    background-image: url("./images/like.png");
+    margin-right: 65px;
+    margin-top: -145px;
+}
+
+
+.dislikeButton2 {
+    
+    float: left;
+    height: 64px;
+    width: 64px;
+    background-image: url("./images/cancel.png");
+    margin-left: 65px;
+    margin-top: -145px;
+    
+}
+.nextButton2 {
+    background-repeat: no-repeat;
+    float: left;
+    height: 80px;
+    width: 80px;
+    background-image: url("./images/next.png");
+    margin-left: 150px;
+    margin-top: -155px;
+    
+}
+
+
+
 .overflowBody {
     height: 100%;    
     overflow-x: hidden;
