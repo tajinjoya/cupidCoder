@@ -91,7 +91,7 @@ class Login extends React.Component {
                 <FacebookLogin
                     cssClass="btnFacebook"
 
-                    appId="2929682047105289"
+                    appId="419850688575686"
 
                     fields="name,email,picture"
                     icon="fa-facebook"
