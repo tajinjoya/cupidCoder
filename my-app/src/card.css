@@ -281,6 +281,7 @@ div .matchButton {
     background-image: url("./images/swift.png");
     height: 30px;
     width: 30px;
+    margin-top: 4px;
 }
 .cshop{
     background-repeat: no-repeat;
@@ -302,7 +303,7 @@ div .matchButton {
     background-image: url("./images/Typescript.png");
     height: 30px;
     width: 30px;
-    margin-top: 3px;
+    margin-top: 4px;
     margin-left: 4px;
 }
 
@@ -316,6 +317,7 @@ div .matchButton {
     background-repeat: no-repeat;
     background-image: url("./images/roby.png");
     height: 30px;
+    margin-top: 3px;
     width: 30px;
 }
 
