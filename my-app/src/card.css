@@ -223,11 +223,13 @@ ul {
 }
 
 div .matchButton {
-    margin-top: -200Px;
+    margin-top: -150Px;
+    margin-left: 5px;
+    margin-right: 50px;
     background: pink;
     border: solid 1px;
     display: flex;
-    
+    width: 90%;
     border-color: whitesmoke;
     border-radius: 30px;
     padding: 10px;
@@ -372,3 +374,105 @@ div .matchButton {
     margin-right: 15px;
 
 }
+
+.wtMatch{
+    font-size: 25px;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    -webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 */
+    -webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
+    animation: mymove 5s infinite;
+    animation-delay: 2s;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+
+
+
+.wtMatch {
+  color: hsla(0, 0%, 0%, .9);
+  font: normal 20px Varela Round, sans-serif;
+  height: 140px;
+  left: 0;
+  letter-spacing: 5px;
+  margin: -160px 0 0 0;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  top: 50%;
+  width: 100%;
+  animation: move linear 2000ms infinite;  
+}
+
+@keyframes move {
+  0% {
+    text-shadow:
+      4px -4px 0 hsla(0, 100%, 50%, 1), 
+      3px -3px 0 hsla(0, 100%, 50%, 1), 
+      2px -2px 0 hsla(0, 100%, 50%, 1), 
+      1px -1px 0 hsla(0, 100%, 50%, 1),
+      -4px 4px 0 hsla(180, 100%, 50%, 1), 
+      -3px 3px 0 hsla(180, 100%, 50%, 1), 
+      -2px 2px 0 hsla(180, 100%, 50%, 1), 
+      -1px 1px 0 hsla(180, 100%, 50%, 1)
+    ;
+  }
+  25% {    
+    text-shadow:      
+      -4px -4px 0 hsla(180, 100%, 50%, 1), 
+      -3px -3px 0 hsla(180, 100%, 50%, 1), 
+      -2px -2px 0 hsla(180, 100%, 50%, 1), 
+      -1px -1px 0 hsla(180, 100%, 50%, 1),
+      4px 4px 0 hsla(0, 100%, 50%, 1), 
+      3px 3px 0 hsla(0, 100%, 50%, 1), 
+      2px 2px 0 hsla(0, 100%, 50%, 1), 
+      1px 1px 0 hsla(0, 100%, 50%, 1)      
+    ;
+  }
+  50% {
+    text-shadow:
+      -4px 4px 0 hsla(0, 100%, 50%, 1), 
+      -3px 3px 0 hsla(0, 100%, 50%, 1), 
+      -2px 2px 0 hsla(0, 100%, 50%, 1), 
+      -1px 1px 0 hsla(0, 100%, 50%, 1),
+      4px -4px 0 hsla(180, 100%, 50%, 1), 
+      3px -3px 0 hsla(180, 100%, 50%, 1), 
+      2px -2px 0 hsla(180, 100%, 50%, 1), 
+      1px -1px 0 hsla(180, 100%, 50%, 1)
+    ;
+  }
+  75% {
+    text-shadow:
+      4px 4px 0 hsla(180, 100%, 50%, 1), 
+      3px 3px 0 hsla(180, 100%, 50%, 1), 
+      2px 2px 0 hsla(180, 100%, 50%, 1), 
+      1px 1px 0 hsla(180, 100%, 50%, 1),
+      -4px -4px 0 hsla(0, 100%, 50%, 1), 
+      -3px -3px 0 hsla(0, 100%, 50%, 1), 
+      -2px -2px 0 hsla(0, 100%, 50%, 1), 
+      -1px -1px 0 hsla(0, 100%, 50%, 1)      
+    ;
+  }
+  100% {
+    text-shadow:
+      4px -4px 0 hsla(0, 100%, 50%, 1), 
+      3px -3px 0 hsla(0, 100%, 50%, 1), 
+      2px -2px 0 hsla(0, 100%, 50%, 1), 
+      1px -1px 0 hsla(0, 100%, 50%, 1),
+      -4px 4px 0 hsla(180, 100%, 50%, 1), 
+      -3px 3px 0 hsla(180, 100%, 50%, 1), 
+      -2px 2px 0 hsla(180, 100%, 50%, 1), 
+      -1px 1px 0 hsla(180, 100%, 50%, 1)
+    ;
+  }  
+}
+
+.restText{
+    margin-top: 250px;
+}
+
+.gif{
+    margin-top: -150px;  
+}
+
