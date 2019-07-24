@@ -17,6 +17,7 @@ class Cards extends Component {
       data: this.props.allData,
       open: false,
       name: '',
+      lTest : 'Java Android'
 
     };
 
@@ -99,13 +100,15 @@ class Cards extends Component {
               
               </ul>
 
+
               <p className="languages" > <div className="location"></div>{d.distanceFromPlayerOne}
+
               </p>
              
             </div>
-​
+
           </div>
-​         
+      
         </Card>
 
       );
@@ -142,7 +145,7 @@ class Cards extends Component {
             </span>
           </div>
         </Popup>
-​
+
       </div>
     );
   }
