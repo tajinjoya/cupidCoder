@@ -214,7 +214,7 @@ async function getMatches(req, res) {
     FROM users
     where id in ${allMatches}`).then((res) => {
       return res.rows;
-    }).then(matches => res.send(JSON.stringify(matches)))
+    }).then(matches => res.send(JSON.stringify(matches))).catch(e => console.log(e))
   } else {
     console.log('no matches')
     res.send('{"match" : "none"}');
@@ -226,22 +226,9 @@ async function getAllUsers(req, res) {
   console.log(req.cookies.userId)
   const id = req.cookies.userId;
 
-//   let alreadyMatched = await client.query(`SELECT * FROM users WHERE facebook_id='${id}'`).then((res) => {
-//     return res.rows[0].matches
-//   })
-//   if (alreadyMatched !== '') {
-
-//     if (alreadyMatched.charAt(alreadyMatched.length - 1) === ',') {
-//       let newStr = alreadyMatched.substring(0, alreadyMatched.length - 1);
-//       alreadyMatched = newStr;
-//     }
-//     alreadyMatched = '(' + alreadyMatched + ')';
-//   }
-// console.log(alreadyMatched)
-
   const result = await client.query(`SELECT * FROM users WHERE facebook_id != '${id}'`).then((res) => {
     return res.rows
-  }).catch(e => console.log(e))
+  }).catch(e => console.log(e, 'this is ereror'))
 
   const playerOneLatitude = req.cookies.latitude.toString();
   const playerOneLongitude = req.cookies.longitude.toString()
@@ -284,6 +271,7 @@ async function saveUser(req, res) {
     tabs,
     languages,
     bio,
+    gitHub,
   } = received;
   const {
     Latitude,
@@ -294,7 +282,7 @@ async function saveUser(req, res) {
   });
   console.log('requre console', req.body);
 
-  await client.query(`INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio, latitude, longitude) VALUES('${req.body.facebookName}','${req.body.id}','${gender}','${tabs}','${languageString}','Nacka','', '', '${bio}','${Latitude}', '${Longitude}');`)
+  await client.query(`INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio, gitHub, latitude, longitude) VALUES('${req.body.facebookName}','${req.body.id}','${gender}','${tabs}','${languageString}','Nacka','', '', '${bio}','${gitHub}','${Latitude}', '${Longitude}');`)
     .then(() => res.send('success'))
     .catch(e => res.send(e))
 

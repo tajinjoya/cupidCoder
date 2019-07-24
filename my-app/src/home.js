@@ -18,10 +18,9 @@ class home extends React.Component {
         const cookies = new Cookies();
         console.log(cookies.get("Token"))
         fetch("http://localhost:5000/api/allmatches", {credentials: 'include'}).then(result => {
-
             return result.json();
         }).then(res => {
-
+            console.log('res', res)
             setTimeout(() => {
             this.setState({data: res, loading: false});
             }, 3500); console.log('home-data',this.state.data);

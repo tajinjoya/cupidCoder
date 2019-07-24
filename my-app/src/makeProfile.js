@@ -43,6 +43,30 @@ const languageOptions = [
     }, {
         value: "Java",
         label: "Java"
+    },
+    {
+        value: "C#",
+        label: "C#"
+    },
+    {
+        value: "PHP",
+        label: "PHP"
+    },
+    {
+        value: "C++",
+        label: "C++"
+    },
+    {
+        value: "Java",
+        label: "Java"
+    },
+    {
+        value: "SQL",
+        label: "SQL"    
+    },
+    {
+        value: "Swift",
+        label: "Swift"    
     }
 ];
 
@@ -51,7 +75,8 @@ class Gender extends React.Component {
         gender: null,
         tabs: null,
         languages: "",
-        bio: null
+        bio: null, 
+        gitHub: null, 
     };
 
     handleGenderChange = selectedOption => {
@@ -69,6 +94,10 @@ class Gender extends React.Component {
 
     handleBioChange = event => {
         this.setState({bio: event.target.value});
+    };
+
+    handleGitHubChange = event => {
+        this.setState({gitHub: event.target.value});
     };
 
 
@@ -104,7 +133,8 @@ console.log('check cookies', latitude,longitude);
             gender: selectedGenderOption, 
             tabs: selectedTabsOption, 
             languages: selectedLanguageOptions, 
-            bio: selectedBioOption
+            bio: selectedBioOption,
+            gitHub: selectedGitHubOption,
         } = this.state;
         return (
             <div className='root'>
@@ -120,7 +150,7 @@ console.log('check cookies', latitude,longitude);
                 <Select
                     value={selectedTabsOption}
                     onChange={this.handleTabsChange}
-                    options={tabsOptions}
+                      options={tabsOptions}
                     placeholder={this.state.tabs}/>
                 <h4>Languages</h4>
 
@@ -131,12 +161,21 @@ console.log('check cookies', latitude,longitude);
                     options={languageOptions}
                     placeholder={this.state.languages}/>
 
+               <h4 className='label'>Bio</h4>
                 <textarea
                     rows={this.state.rows}
                     value={selectedBioOption}
                     placeholder={'Enter your text here...'}
                     className='textareaProfile'
                     onChange={this.handleBioChange.bind(this)}/>
+
+                <h4 className='label'>GitHub URL</h4>
+                <textarea
+                    rows={this.state.rows}
+                    value={selectedGitHubOption}
+                    placeholder={'Enter your URL here...'}
+                    className='gitHubURL'
+                    onChange={this.handleGitHubChange.bind(this)}/>
 
                 <span className="spanProfile">
                     <button onClick={this.submitData}>Continue</button>

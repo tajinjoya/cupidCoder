@@ -90,7 +90,7 @@ class Login extends React.Component {
                 {geo()}
                 <FacebookLogin
                     cssClass="btnFacebook"
-                    appId="2728189017209232"
+                    appId="419850688575686"
                     fields="name,email,picture"
                     icon="fa-facebook"
                     callback={responseFacebook}/>

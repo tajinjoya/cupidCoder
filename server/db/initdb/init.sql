@@ -12,12 +12,9 @@ CREATE TABLE users(
     pending_matches VARCHAR,
     matches VARCHAR,
     bio VARCHAR,
+    gitHub VARCHAR,
     latitude VARCHAR,
     longitude VARCHAR
-
 );
-
--- INSERT INTO users (user_name) VALUES('chawer');
--- INSERT INTO users (facebook_id) VALUES('chaaaaaa')
 
 
