@@ -34,4 +34,4 @@ class Sppiner extends React.Component {
   }
 }
 
-export default Sppiner
+export default Sppiner  

@@ -1,5 +1,6 @@
 	
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS messages;
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
@@ -16,5 +17,11 @@ CREATE TABLE users(
     latitude VARCHAR,
     longitude VARCHAR
 );
+
+CREATE TABLE messages(
+    id SERIAL PRIMARY KEY,
+    chatId VARCHAR,
+    messages VARCHAR
+)
 
 

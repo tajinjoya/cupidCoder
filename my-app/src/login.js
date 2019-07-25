@@ -15,7 +15,7 @@ const Wrapper = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 9% 100%, #ff4545, #f98b60);
+  background: radial-gradient(circle at 50% 100%, #ff4545, #ffb997);
   font-size: 2em;
 `;
 const Content = styled.div`
@@ -79,20 +79,22 @@ class Login extends React.Component {
     };
 
 
-        const coder = '<Coder/>'
+        const coder = '<Cupid Coder/>'
         const h1 = '<h1>  ';
         const h11 = '  </h1> ';
         return (
             <Wrapper>
                 <Content/>
-                <p className='font'>Cupid{coder}</p>
+                <p className='font'>{coder}</p>
                 <p className='font2'>{h1}Dating app for programmers{h11}</p>
                 {geo()}
                 <FacebookLogin
                     cssClass="btnFacebook"
 
 
+
                     appId="2728189017209232"
+
 
 
                     fields="name,email,picture"
