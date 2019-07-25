@@ -186,9 +186,18 @@ app.get('/testgetall', getAllUsers);
 app.get('/api/getMatches', getMatches)
 app.get('/api/checkAccount', checkIfExist)
 app.get('/api/getProfile', getProfile);
+app.get('/getMessages', getMessages);
+app.get('/api/inputMessage', inputMessage);
+
+async function getMessages(req, res){
+
+}
+async function inputMessage(req,res){
+  
+}
 
 async function getProfile(req, res){
-  const userId = req.cookies.userId;
+  const userId = req.cookies.profileId;
   let theMatch = await client.query(`SELECT * FROM users WHERE facebook_id='${userId}'`).then((res) => {
     return res.rows;
   }).catch(e => console.log(e))
@@ -317,7 +326,6 @@ async function saveUser(req, res) {
   languages.forEach(language => {
     languageString += language.value + ' ';
   });
-  console.log('requre console', req.body);
 
   await client.query(`INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio, gitHub, latitude, longitude) VALUES('${req.body.facebookName}','${req.body.id}','${gender}','${tabs}','${languageString}','Nacka','', '', '${bio}','${gitHub}','${Latitude}', '${Longitude}');`)
     .then(() => res.send('success'))

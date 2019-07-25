@@ -2,6 +2,8 @@ import React from "react";
 import Sppiner from "./Sppiner";
 import Avatar from "react-avatar";
 import "./matches.css";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 export default class Matches extends React.Component {
   constructor(props) {
@@ -9,7 +11,7 @@ export default class Matches extends React.Component {
     this.state = {
       data: [],
       loading: true,
-      name: 'yolo',
+      name: "yolo"
     };
   }
 
@@ -29,7 +31,7 @@ export default class Matches extends React.Component {
         this.setState({
           data: res,
           loading: false,
-          renderId : '',
+          renderId: ""
         });
       })
       .catch(e => {
@@ -38,15 +40,14 @@ export default class Matches extends React.Component {
   }
 
   getProfileInfo(e){
-      console.log(e.id)
-      console.log('lol')
-
-    //   window.open(`/getProfile:${this.props.name}`);
-  }
+    console.log(e)
+    cookies.set("profileId", e, { path: "/" });
+  //console.log(this.state.name)
+  window
+  .location
+  .replace("http://localhost:3000/getProfile");
+}
   render() {
-    //   const getProfileInfo = (e) => {
-    //     console.log(e.target)
-    //   };
     console.log(this.state.data);
     let data;
     if (this.state.loading) {
@@ -63,7 +64,9 @@ export default class Matches extends React.Component {
               <div className="messageIcon"> </div>
               {matchInfo.map((p, index) => {
                 return (
-                  <div className="inlineDiv" key={index} onClick={this.getProfileInfo.bind(this)}>
+                  <div className="inlineDiv" key={index} onClick={this.getProfileInfo.bind(this,
+                    p.facebook_id)}>
+
                     <Avatar
                       facebookId={p.facebook_id}
                       className="matchAvatar"
@@ -82,12 +85,12 @@ export default class Matches extends React.Component {
         );
       } else {
         data = (
-
-            <div className="containerName">
-            <div className="goBackHome" onClick={this.homeRoute}> </div>
+          <div className="containerName">
+            <div className="goBackHome" onClick={this.homeRoute}>
+              {" "}
+            </div>
             <div className="messageIcon"> </div>
-          <div className="noMatchesSad"> No matches :(
-          </div>
+            <div className="noMatchesSad"> No matches :(</div>
           </div>
         );
       }
@@ -96,3 +99,4 @@ export default class Matches extends React.Component {
     return <div> {data} </div>;
   }
 }
+

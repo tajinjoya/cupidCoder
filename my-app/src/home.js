@@ -23,7 +23,7 @@ class home extends React.Component {
             console.log('res', res)
             setTimeout(() => {
             this.setState({data: res, loading: false});
-            }, 3500); console.log('home-data',this.state.data);
+            }, 2000); console.log('home-data',this.state.data);
         }).catch(e => {
             console.log(e);
         });
