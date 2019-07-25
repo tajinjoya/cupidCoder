@@ -30,8 +30,6 @@ class Cards extends Component {
 
   onSwipeLeft(d) {
     console.log("Don't like");
-    const token = cookies.get("Token");
-    const id = cookies.get("userId");
     console.log('test d', d);
 
   }

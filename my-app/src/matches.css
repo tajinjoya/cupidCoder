@@ -48,6 +48,7 @@
 }
 
 .bodyMatcher {
+    background-color: #f4f6f6;
     height: 667px;
 }
 
@@ -79,4 +80,17 @@
     margin-top: 200px;
     background: url('./images/sad-robot.png');
     background-repeat: no-repeat;
+}
+
+.sProfileBody  {
+    height: 667px;
+
+    background-color: #f4f6f6;
+
+}
+
+.App {
+   height: 40px !important;
+   max-width: 50px;
+   overflow: hidden;
 }

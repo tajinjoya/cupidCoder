@@ -21,7 +21,9 @@ function App() {
         <Route path="/card" component={Card} />
         <Route path="/geo" component={Geo} />
         <Route path="/matches" component={Matches} />
-        <Route path="/getProfile:id" component={profileInfo} />
+
+        <Route path="/getProfile" component={profileInfo} />
+
 
       </div>
     </Router>

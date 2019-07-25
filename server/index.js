@@ -186,8 +186,19 @@ app.get('/api/getMatches', getMatches)
 app.get('/api/checkAccount', checkIfExist)
 app.get('/api/getProfile', getProfile);
 
+app.get('/getMessages', getMessages);
+app.get('/api/inputMessage', inputMessage);
+
+async function getMessages(req, res){
+
+}
+async function inputMessage(req,res){
+  
+}
+
 async function getProfile(req, res){
-  const userId = req.cookies.userId;
+  const userId = req.cookies.profileId;
+
   let theMatch = await client.query(`SELECT * FROM users WHERE facebook_id='${userId}'`).then((res) => {
     return res.rows;
   }).catch(e => console.log(e))
@@ -244,17 +255,21 @@ async function getAllUsers(req, res) {
 
   if (allMatches !== '') {
 
+
     if (allMatches.charAt(allMatches.length - 1) === ',') {
       let newStr = allMatches.substring(0, allMatches.length - 1);
       allMatches = newStr;
     }
 
     allMatches = allMatches.split(',');
+   console.log(allMatches)
    for(let i = 0; i < allMatches.length; i++){
     let str =  `AND id != ${allMatches[i]} `;
     bigString += str;
    }
+   console.log(bigString)
   }
+
 
   const result = await client.query(`SELECT * FROM users WHERE (facebook_id != '${id}' ${bigString})`).then((res) => {
     return res.rows
