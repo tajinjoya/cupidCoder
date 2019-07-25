@@ -25,18 +25,29 @@ export default class playerProfile extends Component {
         return result.json();
       })
       .then(res => {
-        console.log(res);
         this.setState({
           data: res,
-          loading: false
-        });
+          loading: false,
       })
+    })
       .catch(e => {
         console.log(e);
       });
-    for (let i = 0; i < 5; i++) {
-      //addResponseMessage("Welcome to this awesome chat!");
-    }
+
+      fetch("http://localhost:5000/api/getMessages", {
+        credentials: "include"
+    }).then(result => {
+        return result.json()
+    }).then( res => {
+        console.log(res.info)
+        let arr = res.info;
+        arr = arr.split('/');
+        console.log(arr)
+        for(let i = 0; i < arr.length; i++){
+            addResponseMessage(`${arr[i]}`);
+        }
+    })
+    
    // addUserMessage("NO");
 
    // addResponseMessage("Welcome to this awesome chat!");

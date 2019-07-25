@@ -1,4 +1,3 @@
-	
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS messages;
 
@@ -21,7 +20,7 @@ CREATE TABLE users(
 CREATE TABLE messages(
     id SERIAL PRIMARY KEY,
     chatId VARCHAR,
-    messages VARCHAR
-)
+    messages1 VARCHAR
+);
 
 

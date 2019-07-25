@@ -186,10 +186,34 @@ app.get('/api/getMatches', getMatches)
 app.get('/api/checkAccount', checkIfExist)
 app.get('/api/getProfile', getProfile);
 
-app.get('/getMessages', getMessages);
+app.get('/api/getMessages', getMessages);
 app.get('/api/inputMessage', inputMessage);
 
 async function getMessages(req, res){
+  let userId = req.cookies.userId;
+  let playerTwoId = req.cookies.profileId;
+  let players = await client.query(`SELECT * FROM users WHERE facebook_id='${userId}' OR facebook_id='${playerTwoId}'`).then((res) => {
+    let arr = [];
+    arr.push(res.rows[0].id);
+    arr.push(res.rows[1].id)
+    return arr;
+  }).catch(e => console.log(e))
+
+  players = players.sort((a,b) => {return a-b})
+
+
+  let messageId = players[0] + '_' +players[1];
+  console.log(typeof(messageId))
+  console.log(players)
+
+  let messages = await client.query(`SELECT * FROM messages WHERE chatId='${messageId}'`).then((res) => {
+    return res.rows[0].messages1;
+  }).catch(e => console.log(e))
+  console.log(messages)
+
+  console.log(req.cookies);
+
+  res.send(`{ "info" : "${messages}"}`)
 
 }
 async function inputMessage(req,res){
