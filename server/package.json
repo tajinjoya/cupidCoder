@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup-docker": "docker run --name sugar-docker -e POSTGRES_PASSWORD=secret -p 5432:5432 postgres:latest",
+    "start-docker-db": "docker start sugar-docker",
+    "setup-tables": "docker exec -i sugar-docker psql -U postgres < ./db/initdb/init.sql",
+    "populate-mock-data": "node ./db/populate.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "express": "4.x.x",
+    "express-session": "^1.16.2",
+    "github-oauth": "0.x.x",
+    "google-distance-matrix": "^1.1.1",
+    "node-fetch": "^2.6.0",
+    "passport": "^0.4.0",
+    "passport-github2": "^0.1.11",
+    "pg": "^7.11.0",
+    "react": "^16.8.6",
+    "react-github-login": "^1.0.3"
+  }
+}

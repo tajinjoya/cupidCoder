@@ -1,0 +1,53 @@
+.root {
+  /* font-family: 'Courier New', Courier; */
+  font-family: 'Pacifico', cursive; 
+  margin-top: -45px;
+  background: radial-gradient(circle at 9% 100%, #ff4545, #f98b60);
+  padding: 60px 20px;
+  line-height: 0.4em;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  /* height: 100vh; */
+  overflow: auto;
+  position:fixed;
+  width: 90%;
+ 
+}
+
+
+.spanProfile {
+  margin-top: 30Px;
+  border: solid 2px;
+  color:white;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  border-color: whitesmoke;
+  border-radius: 30px;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.textareaProfile {
+  width: 100%;
+  height: 70px;
+  box-shadow: 2px 2px 2px #888888;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+span button {
+  font-family: 'Pacifico', cursive;
+  /* font-family: 'Courier New', Courier, monospace; */
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.label {
+  padding-top: 15px;
+}
+
+.gitHubURL{
+  width: 100%;
+}

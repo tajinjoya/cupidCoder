@@ -1,0 +1,478 @@
+.card_container {
+    background-color: white !important;
+    margin-top: -50px !important;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0 4px 0 1px #eaeaea;
+    color: black;
+    /* display: flex !important; */
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+}
+.container-loaded {
+    margin-top: 10px !important;
+}
+.removed {
+    visibility: hidden;
+    pointer-events: none;
+}
+.sb-avatar {
+    border: 3px solid whitesmoke;
+    width: 340px;
+    margin-top: 10px;
+    display: flex;
+    pointer-events: none;
+}
+.cardBody {
+    /* background: radial-gradient(circle at 9% 100%, #ff4545, #f98b60); */
+}
+h1 {
+    margin-top: 5px;
+    text-align: center;
+}
+.gender {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    pointer-events: none;
+}
+.bio {
+    margin-left: 40px;
+    display: flex;
+    pointer-events: none;
+}
+ul {
+    margin: 1px 40px 2px;
+    pointer-events: none;
+    top: 15px;
+}
+.aDIV ul {
+    pointer-events: none;
+    list-style-type: none;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 4px;
+    padding-left: 0;
+}
+.aDIV li {
+    pointer-events: none;
+    display: inline;
+    margin: 3px;
+}
+.aDiv {
+    overflow: auto;
+    padding-top: 50px;
+    pointer-events: none;
+}
+.picture {
+    float: right;
+    width: 64px;
+    height: 65px;
+    display: block;
+    position: relative;
+}
+
+.picture::after {
+    background-repeat: no-repeat;
+    content: "";
+    background: url('./images/Untitled3.png');
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+.userName {
+    margin-bottom: 4px;
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    pointer-events: none;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 5px;
+}
+.languages {
+    margin-top: 0px;
+    height: 100%;
+    overflow: auto;
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 5px;
+    pointer-events: none;
+    font-size: 12px;
+}
+.pleaseDont {
+    pointer-events: none;
+}
+
+.popup {
+    font-family: 'Pacifico', cursive;
+    font-size: 20px;
+    background: radial-gradient(circle at 10% 100%, #f98b60, #ff4545) !important;
+    border-radius: 30px;
+    width: 300px;
+    height: 600px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+
+}
+
+.Messages {
+    margin-top: 7px;
+    margin-right: 5px;
+    float: right;
+    height: 64px;
+    width: 64px;
+    background-repeat: no-repeat;
+    background-image: url("./images/love.png");
+}
+.HomeButton {
+    margin-top: 7px;
+    margin-left: 12px;
+    float: left;
+    height: 64px;
+    width: 64px;
+    background-repeat: no-repeat;
+    background-image: url("./images/home.png");
+}
+.likeButton {
+    
+    float: right;
+    height: 64px;
+    width: 64px;
+    background-image: url("./images/like.png");
+    margin-right: 65px;
+    margin-top: -145px;
+}
+
+
+.dislikeButton {
+    
+    float: left;
+    height: 64px;
+    width: 64px;
+    background-image: url("./images/cancel.png");
+    margin-left: 65px;
+    margin-top: -145px;
+    
+}
+.nextButton {
+    background-repeat: no-repeat;
+    float: left;
+    height: 80px;
+    width: 80px;
+    background-image: url("./images/next.png");
+    margin-left: 150px;
+    margin-top: -155px;
+    
+}
+
+
+.likeButton2 {
+    
+    float: right;
+    height: 64px;
+    width: 64px;
+    background-image: url("./images/like.png");
+    margin-right: 65px;
+    margin-top: -145px;
+}
+
+
+.dislikeButton2 {
+    
+    float: left;
+    height: 64px;
+    width: 64px;
+    background-image: url("./images/cancel.png");
+    margin-left: 65px;
+    margin-top: -145px;
+    
+}
+.nextButton2 {
+    background-repeat: no-repeat;
+    float: left;
+    height: 80px;
+    width: 80px;
+    background-image: url("./images/next.png");
+    margin-left: 150px;
+    margin-top: -155px;
+    
+}
+
+
+
+.overflowBody {
+    height: 100%;    
+    overflow-x: hidden;
+    background-color: #f4f6f6;
+}
+
+ .matchFound {
+    margin-top: 100px;
+    margin-left: 12px;
+    margin-right: 10px; 
+    width: 90%;
+    text-align: center;
+}
+
+div .matchButton {
+    margin-top: -150Px;
+    margin-left: 5px;
+    margin-right: 50px;
+    background: pink;
+    border: solid 1px;
+    display: flex;
+    width: 90%;
+    border-color: whitesmoke;
+    border-radius: 30px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    /* margin-top: 150px; */
+ 
+   
+}
+
+.buttonText {
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    width: 100%
+}
+
+.languagesDisplay{
+    display: flex;
+}
+
+.Java{
+    background-repeat: no-repeat;
+    background-image: url("./images/java.png");
+    height: 30px;
+    width: 30px;
+}
+.Python{
+    background-repeat: no-repeat;
+    background-image: url("./images/python.png");
+    height: 30px;
+    width: 25px;
+    margin-top: 3px;
+}
+.Cplus{
+    background-repeat: no-repeat;
+    background-image: url("./images/c++.png");
+    height: 25px;
+    width: 30px;
+    margin-top: 4px;
+}
+.PHP{
+    background-repeat: no-repeat;
+    background-image: url("./images/php.png");
+    height: 25px;
+    width: 30px;
+    margin-top: 4px;
+    margin-left: 6px;
+}
+.Swift{
+    background-repeat: no-repeat;
+    background-image: url("./images/swift.png");
+    height: 30px;
+    width: 30px;
+    margin-top: 4px;
+}
+.cshop{
+    background-repeat: no-repeat;
+    background-image: url("./images/cshop.png");
+    height: 25px;
+    width: 30px;
+    margin-top: 4px;
+}
+.SQL{
+    background-repeat: no-repeat;
+    background-image: url("./images/SQL.png");
+    height: 25px;
+    width: 25px;
+    margin-top: 4px;
+
+}
+.Typescript{
+    background-repeat: no-repeat;
+    background-image: url("./images/Typescript.png");
+    height: 30px;
+    width: 30px;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
+.Javascript{
+    background-repeat: no-repeat;
+    background-image: url("./images/Javascript.png");
+    height: 30px;
+    width: 30px;
+}
+.Ruby{
+    background-repeat: no-repeat;
+    background-image: url("./images/roby.png");
+    height: 30px;
+    margin-top: 3px;
+    width: 30px;
+}
+
+
+
+.Male{
+    background-repeat: no-repeat;
+    background-image: url("./images/Male.png");
+    height: 25px;
+    width: 25px;
+    margin-left:5px;
+    margin-right:10px;
+
+}
+
+.Female{
+    background-repeat: no-repeat;
+    background-image: url("./images/Female.png");
+    height: 25px;
+    width: 25px;
+    margin-left:5px;
+    margin-right:10px;
+
+}
+.Programmer{
+    background-repeat: no-repeat;
+    background-image: url("./images/developer.png");
+    height: 25px;
+    width: 25px;
+    margin-left:10px;
+    margin-right:10px;
+}
+.tabs{
+    background-repeat: no-repeat;
+    background-image: url("./images/tab.png");
+    height: 25px;
+    width: 40px;
+}
+.Space{
+    background-repeat: no-repeat;
+    background-image: url("./images/space.png");
+    height: 25px;
+    width: 55px;
+
+}
+.location{
+    background-repeat: no-repeat;
+    background-image: url("./images/location.png");
+    height: 22px;
+    width: 25px;
+    float: right;
+    margin-right: 15px;
+
+}
+
+.wtMatch{
+    font-size: 25px;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    -webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 */
+    -webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
+    animation: mymove 5s infinite;
+    animation-delay: 2s;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+
+
+
+.wtMatch {
+  color: hsla(0, 0%, 0%, .9);
+  font: normal 20px Varela Round, sans-serif;
+  height: 140px;
+  left: 0;
+  letter-spacing: 5px;
+  margin: -160px 0 0 0;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  top: 50%;
+  width: 100%;
+  animation: move linear 2000ms infinite;  
+}
+
+@keyframes move {
+  0% {
+    text-shadow:
+      4px -4px 0 hsla(0, 100%, 50%, 1), 
+      3px -3px 0 hsla(0, 100%, 50%, 1), 
+      2px -2px 0 hsla(0, 100%, 50%, 1), 
+      1px -1px 0 hsla(0, 100%, 50%, 1),
+      -4px 4px 0 hsla(180, 100%, 50%, 1), 
+      -3px 3px 0 hsla(180, 100%, 50%, 1), 
+      -2px 2px 0 hsla(180, 100%, 50%, 1), 
+      -1px 1px 0 hsla(180, 100%, 50%, 1)
+    ;
+  }
+  25% {    
+    text-shadow:      
+      -4px -4px 0 hsla(180, 100%, 50%, 1), 
+      -3px -3px 0 hsla(180, 100%, 50%, 1), 
+      -2px -2px 0 hsla(180, 100%, 50%, 1), 
+      -1px -1px 0 hsla(180, 100%, 50%, 1),
+      4px 4px 0 hsla(0, 100%, 50%, 1), 
+      3px 3px 0 hsla(0, 100%, 50%, 1), 
+      2px 2px 0 hsla(0, 100%, 50%, 1), 
+      1px 1px 0 hsla(0, 100%, 50%, 1)      
+    ;
+  }
+  50% {
+    text-shadow:
+      -4px 4px 0 hsla(0, 100%, 50%, 1), 
+      -3px 3px 0 hsla(0, 100%, 50%, 1), 
+      -2px 2px 0 hsla(0, 100%, 50%, 1), 
+      -1px 1px 0 hsla(0, 100%, 50%, 1),
+      4px -4px 0 hsla(180, 100%, 50%, 1), 
+      3px -3px 0 hsla(180, 100%, 50%, 1), 
+      2px -2px 0 hsla(180, 100%, 50%, 1), 
+      1px -1px 0 hsla(180, 100%, 50%, 1)
+    ;
+  }
+  75% {
+    text-shadow:
+      4px 4px 0 hsla(180, 100%, 50%, 1), 
+      3px 3px 0 hsla(180, 100%, 50%, 1), 
+      2px 2px 0 hsla(180, 100%, 50%, 1), 
+      1px 1px 0 hsla(180, 100%, 50%, 1),
+      -4px -4px 0 hsla(0, 100%, 50%, 1), 
+      -3px -3px 0 hsla(0, 100%, 50%, 1), 
+      -2px -2px 0 hsla(0, 100%, 50%, 1), 
+      -1px -1px 0 hsla(0, 100%, 50%, 1)      
+    ;
+  }
+  100% {
+    text-shadow:
+      4px -4px 0 hsla(0, 100%, 50%, 1), 
+      3px -3px 0 hsla(0, 100%, 50%, 1), 
+      2px -2px 0 hsla(0, 100%, 50%, 1), 
+      1px -1px 0 hsla(0, 100%, 50%, 1),
+      -4px 4px 0 hsla(180, 100%, 50%, 1), 
+      -3px 3px 0 hsla(180, 100%, 50%, 1), 
+      -2px 2px 0 hsla(180, 100%, 50%, 1), 
+      -1px 1px 0 hsla(180, 100%, 50%, 1)
+    ;
+  }  
+}
+
+.restText{
+    margin-top: 250px;
+}
+
+.gif{
+    margin-top: -150px;  
+}
+

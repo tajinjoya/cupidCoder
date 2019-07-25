@@ -1,0 +1,37 @@
+body{
+  margin-top: 0%;
+  margin-bottom: 0%;
+  margin-right: 0%;
+  margin-left: 0%;
+}
+
+.btnFacebook { 
+    width: 300px;
+    height:40px;  
+    border-radius: 3px;
+    background:transparent;
+    color:white;
+    border:2px solid;  
+    text-align: center;
+    margin:5px;
+    display: inline-block;
+    border-radius: 25px;
+    margin-top: 70%;
+  }
+
+.font{
+font-family: 'Courier New', Courier, monospace;
+margin-bottom: 3px;
+}
+.font2{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    width: 300px;
+    text-align: center;
+}
+.font3{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  width: 260px;
+  text-align: center;
+}

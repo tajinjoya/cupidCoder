@@ -1,0 +1,96 @@
+.containerName {
+
+  flex-direction: column;
+  background-color: #f4f6f6;
+}
+
+.matchAvatar {
+    margin-bottom: 170px !important;
+    margin-left: 4px !important;
+    
+}
+
+.profilePage1 {
+    height: 100px;
+    width: 220px;
+    font-family: 'Roboto', sans-serif;
+    color: #262626 !important;
+    font-size: 130%;
+    display: inline-block;
+    margin-left: 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin-bottom: 40px;
+    pointer-events: none;
+}
+
+.profileName{
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: -10px;
+    margin-top: 32px;
+    pointer-events: none;
+}
+
+.profileBio{
+    font-size: 0.8rem;
+    font-weight: 300;
+    pointer-events: none;
+}
+
+.inlineDiv {
+    max-height: 115px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+    overflow: hidden
+}
+
+.bodyMatcher {
+    background-color: #f4f6f6;
+    height: 667px;
+}
+
+.goBackHome {
+    display: inline-block;
+    margin-top: 7px;
+    margin-left: 12px;
+    height: 64px;
+    width: 64px;
+    background: url('./images/home.png');
+    background-repeat: no-repeat;
+}
+
+.messageIcon {
+    margin-top: 7px;
+    float:right;
+    margin-right: 5px;
+    height: 64px;
+    width: 64px;
+    background: url('./images/love.png');
+    background-repeat: no-repeat;
+
+}
+
+.noMatchesSad {
+    height: 400px;
+    width: 300px;
+    margin-left: 60px;
+    margin-top: 200px;
+    background: url('./images/sad-robot.png');
+    background-repeat: no-repeat;
+}
+
+.sProfileBody  {
+    height: 667px;
+
+    background-color: #f4f6f6;
+
+}
+
+.App {
+   height: 40px !important;
+   max-width: 50px;
+   overflow: hidden;
+}
