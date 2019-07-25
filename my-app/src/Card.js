@@ -30,6 +30,8 @@ class Cards extends Component {
 
   onSwipeLeft(d) {
     console.log("Don't like");
+    const token = cookies.get("Token");
+    const id = cookies.get("userId");
     console.log('test d', d);
 
   }
@@ -83,7 +85,7 @@ class Cards extends Component {
           .bind(this)}
           data={d}>
           <div className="pleaseDont">
-            <Avatar facebookId={d.facebook_id} size="330" round="7px"/>
+            <Avatar facebookId={d.facebook_id} size="330" round="5px"/>
             <h3 className="userName">{d.user_name}<div className={d.gender}></div><div className={d.tab}></div></h3>
             <div className="aDIV">
               
@@ -97,15 +99,13 @@ class Cards extends Component {
               
               </ul>
 
-
               <p className="languages" > <div className="location"></div>{d.distanceFromPlayerOne}
-
               </p>
              
             </div>
-
+​
           </div>
-      
+​         
         </Card>
 
       );
@@ -121,11 +121,10 @@ class Cards extends Component {
         <Popup className="popupClass" open={this.state.open} closeOnDocumentClick onClose={this.closeModal}>
           <  div className="popup">
             <div className="matchFound">
-             <p className="wtMatch">
-              Wow! what a match!
+             <p>
+              Congratulations!
                </p> 
-            
-            <div className="restText">
+            <div>
               <p>You and </p>
               <p>{this.state.name}</p>
               <p>have liked each other!</p>
@@ -143,7 +142,7 @@ class Cards extends Component {
             </span>
           </div>
         </Popup>
-
+​
       </div>
     );
   }

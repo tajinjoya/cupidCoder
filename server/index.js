@@ -107,7 +107,6 @@ const getGeoMatrix = async (player1Lat, player1Long, player2Lat, player2Long) =>
               var address = distances.destination_addresses.join();
               let shortAddress = address.replace(/\d/g, '').replace(/\s+/g, '').replace(/UnnamedRoad,/g, '').replace(/,Sweden/g, '');
               let finalResult =distance+' / '+shortAddress;
-              console.log('finalResult', finalResult);
 
               resolve(finalResult);
             } else {
@@ -198,7 +197,6 @@ async function getProfile(req, res){
 
 async function checkIfExist(req, res) {
   const userId = req.cookies.userId;
-  console.log('plz')
   let doesUserExist = await client.query(`select 1 from users where facebook_id = '${userId}' limit 1;`).then((res) => {
     return res.rows;
   }).catch(e => console.log(e))
@@ -208,7 +206,6 @@ async function checkIfExist(req, res) {
   } else {
     res.send('{"exist" : "true"}')
   }
-  //console.log(doesUserExist)
 }
 
 async function getMatches(req, res) {
@@ -239,7 +236,6 @@ async function getMatches(req, res) {
 }
 
 async function getAllUsers(req, res) {
-  console.log(req.cookies.userId)
   const id = req.cookies.userId;
   let bigString = '';
   let allMatches = await client.query(`SELECT * FROM users WHERE facebook_id='${id}'`).then((res) => {
@@ -254,12 +250,10 @@ async function getAllUsers(req, res) {
     }
 
     allMatches = allMatches.split(',');
-   console.log(allMatches)
    for(let i = 0; i < allMatches.length; i++){
     let str =  `AND id != ${allMatches[i]} `;
     bigString += str;
    }
-   console.log(bigString)
   }
 
   const result = await client.query(`SELECT * FROM users WHERE (facebook_id != '${id}' ${bigString})`).then((res) => {
@@ -287,13 +281,12 @@ async function getAllUsers(req, res) {
   });
 
   let sortMeter = finalDataMeter.sort((a, b) => {
-    return parseInt(a.distanceFromPlayerOne) - parseInt(b.distanceFromPlayerOne)
+    return parseFloat(a.distanceFromPlayerOne) - parseFloat(b.distanceFromPlayerOne)
   })
   let sortKm = finalDataKilloMeter.sort((a, b) => {
-    return parseInt(a.distanceFromPlayerOne) - parseInt(b.distanceFromPlayerOne)
+    return parseFloat(a.distanceFromPlayerOne) - parseFloat(b.distanceFromPlayerOne)
   })
   let mergeArray = [...sortMeter, ...sortKm]
-
 
   res.send(JSON.stringify(mergeArray))
 
@@ -317,7 +310,6 @@ async function saveUser(req, res) {
   languages.forEach(language => {
     languageString += language.value + ' ';
   });
-  console.log('requre console', req.body);
 
   await client.query(`INSERT INTO users (user_name,  facebook_id, Gender, tab,languages, user_location, pending_matches, matches, bio, gitHub, latitude, longitude) VALUES('${req.body.facebookName}','${req.body.id}','${gender}','${tabs}','${languageString}','Nacka','', '', '${bio}','${gitHub}','${Latitude}', '${Longitude}');`)
     .then(() => res.send('success'))
