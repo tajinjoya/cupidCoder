@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
 body{
   margin-top: 0%;
   margin-bottom: 0%;
@@ -16,15 +18,19 @@ body{
     margin:5px;
     display: inline-block;
     border-radius: 25px;
-    margin-top: 70%;
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 60%;
   }
 
 .font{
-font-family: 'Courier New', Courier, monospace;
-margin-bottom: 3px;
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 3px;
+text-align: center;
+width: 300px;
+font-weight: inherit;
 }
 .font2{
-    font-family: 'Courier New', Courier, monospace;
+  font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     width: 300px;
     text-align: center;
