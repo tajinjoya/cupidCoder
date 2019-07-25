@@ -11,7 +11,9 @@ export default class Matches extends React.Component {
     this.state = {
       data: [],
       loading: true,
-      name: "yolo"
+
+      name: 'yolo',
+
     };
   }
 
@@ -31,7 +33,9 @@ export default class Matches extends React.Component {
         this.setState({
           data: res,
           loading: false,
-          renderId: ""
+
+          renderId : '',
+
         });
       })
       .catch(e => {
@@ -40,14 +44,20 @@ export default class Matches extends React.Component {
   }
 
   getProfileInfo(e){
+
+
     console.log(e)
     cookies.set("profileId", e, { path: "/" });
-  //console.log(this.state.name)
+
   window
   .location
   .replace("http://localhost:3000/getProfile");
 }
+
   render() {
+    //   const getProfileInfo = (e) => {
+    //     console.log(e.target)
+    //   };
     console.log(this.state.data);
     let data;
     if (this.state.loading) {
@@ -64,8 +74,10 @@ export default class Matches extends React.Component {
               <div className="messageIcon"> </div>
               {matchInfo.map((p, index) => {
                 return (
+
                   <div className="inlineDiv" key={index} onClick={this.getProfileInfo.bind(this,
                     p.facebook_id)}>
+
 
                     <Avatar
                       facebookId={p.facebook_id}

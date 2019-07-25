@@ -40,21 +40,10 @@ const languageOptions = [
     }, {
         value: "Python",
         label: "Python"
-    }, {
-        value: "Java",
-        label: "Java"
-    },
-    {
-        value: "C#",
-        label: "C#"
     },
     {
         value: "PHP",
         label: "PHP"
-    },
-    {
-        value: "C++",
-        label: "C++"
     },
     {
         value: "Java",
@@ -72,21 +61,10 @@ const languageOptions = [
         value: "Cplus",
         label: "C++"
     }
-    , {
-        value: "PHP",
-        label: "PHP"
-    }
+    
     , {
         value: "cshop",
         label: "C#"
-    }
-    , {
-        value: "Swift",
-        label: "Swift"
-    }
-    , {
-        value: "SQL",
-        label: "SQL"
     }
     
 ];

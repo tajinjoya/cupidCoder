@@ -83,7 +83,7 @@ class Cards extends Component {
           .bind(this)}
           data={d}>
           <div className="pleaseDont">
-            <Avatar facebookId={d.facebook_id} size="330" round="7px"/>
+            <Avatar facebookId={d.facebook_id} size="330" round="5px"/>
             <h3 className="userName">{d.user_name}<div className={d.gender}></div><div className={d.tab}></div></h3>
             <div className="aDIV">
               
@@ -97,15 +97,13 @@ class Cards extends Component {
               
               </ul>
 
-
               <p className="languages" > <div className="location"></div>{d.distanceFromPlayerOne}
-
               </p>
              
             </div>
-
+​
           </div>
-      
+​         
         </Card>
 
       );
@@ -142,7 +140,7 @@ class Cards extends Component {
             </span>
           </div>
         </Popup>
-
+​
       </div>
     );
   }

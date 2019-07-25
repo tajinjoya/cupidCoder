@@ -58,7 +58,7 @@ class home extends React.Component {
                 {console.log('hi',this.state.data)}
                 <div className="likeButton"></div>
                 <div className="dislikeButton"></div>
-                <div className="nextButton"></div>
+                <div className="nextButton" src={this.state.data}></div>
 
             </div>
 

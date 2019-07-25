@@ -107,7 +107,6 @@ const getGeoMatrix = async (player1Lat, player1Long, player2Lat, player2Long) =>
               var address = distances.destination_addresses.join();
               let shortAddress = address.replace(/\d/g, '').replace(/\s+/g, '').replace(/UnnamedRoad,/g, '').replace(/,Sweden/g, '');
               let finalResult =distance+' / '+shortAddress;
-              console.log('finalResult', finalResult);
 
               resolve(finalResult);
             } else {
@@ -186,6 +185,7 @@ app.get('/testgetall', getAllUsers);
 app.get('/api/getMatches', getMatches)
 app.get('/api/checkAccount', checkIfExist)
 app.get('/api/getProfile', getProfile);
+
 app.get('/getMessages', getMessages);
 app.get('/api/inputMessage', inputMessage);
 
@@ -198,6 +198,7 @@ async function inputMessage(req,res){
 
 async function getProfile(req, res){
   const userId = req.cookies.profileId;
+
   let theMatch = await client.query(`SELECT * FROM users WHERE facebook_id='${userId}'`).then((res) => {
     return res.rows;
   }).catch(e => console.log(e))
@@ -207,7 +208,6 @@ async function getProfile(req, res){
 
 async function checkIfExist(req, res) {
   const userId = req.cookies.userId;
-  console.log('plz')
   let doesUserExist = await client.query(`select 1 from users where facebook_id = '${userId}' limit 1;`).then((res) => {
     return res.rows;
   }).catch(e => console.log(e))
@@ -217,7 +217,6 @@ async function checkIfExist(req, res) {
   } else {
     res.send('{"exist" : "true"}')
   }
-  //console.log(doesUserExist)
 }
 
 async function getMatches(req, res) {
@@ -248,7 +247,6 @@ async function getMatches(req, res) {
 }
 
 async function getAllUsers(req, res) {
-  console.log(req.cookies.userId)
   const id = req.cookies.userId;
   let bigString = '';
   let allMatches = await client.query(`SELECT * FROM users WHERE facebook_id='${id}'`).then((res) => {
@@ -256,6 +254,7 @@ async function getAllUsers(req, res) {
   }).catch(e => console.log(e))
 
   if (allMatches !== '') {
+
 
     if (allMatches.charAt(allMatches.length - 1) === ',') {
       let newStr = allMatches.substring(0, allMatches.length - 1);
@@ -270,6 +269,7 @@ async function getAllUsers(req, res) {
    }
    console.log(bigString)
   }
+
 
   const result = await client.query(`SELECT * FROM users WHERE (facebook_id != '${id}' ${bigString})`).then((res) => {
     return res.rows
@@ -296,13 +296,12 @@ async function getAllUsers(req, res) {
   });
 
   let sortMeter = finalDataMeter.sort((a, b) => {
-    return parseInt(a.distanceFromPlayerOne) - parseInt(b.distanceFromPlayerOne)
+    return parseFloat(a.distanceFromPlayerOne) - parseFloat(b.distanceFromPlayerOne)
   })
   let sortKm = finalDataKilloMeter.sort((a, b) => {
-    return parseInt(a.distanceFromPlayerOne) - parseInt(b.distanceFromPlayerOne)
+    return parseFloat(a.distanceFromPlayerOne) - parseFloat(b.distanceFromPlayerOne)
   })
   let mergeArray = [...sortMeter, ...sortKm]
-
 
   res.send(JSON.stringify(mergeArray))
 
