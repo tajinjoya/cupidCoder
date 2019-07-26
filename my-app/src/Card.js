@@ -68,7 +68,9 @@ class Cards extends Component {
     this.setState({open: false});
   }
 
+
   renderCards() {
+
     let data = this.props.allData;
     return data.map(d => {
       
@@ -82,7 +84,7 @@ class Cards extends Component {
           .onSwipeRight
           .bind(this)}
           data={d}>
-          <div className="pleaseDont">
+          <div className="pleaseDont"  onClick={this.pleaseWork}>
             <Avatar facebookId={d.facebook_id} size="330" round="5px"/>
             <h3 className="userName">{d.user_name}<div className={d.gender}></div><div className={d.tab}></div></h3>
             <div className="aDIV">
@@ -99,13 +101,10 @@ class Cards extends Component {
 
               <p className="languages" > <div className="location"></div>{d.distanceFromPlayerOne}
               </p>
-             
             </div>
-​
           </div>
 ​         
         </Card>
-
       );
     });
   }

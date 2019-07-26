@@ -277,6 +277,8 @@ async function getAllUsers(req, res) {
     return res.rows[0].matches;
   }).catch(e => console.log(e))
 
+  console.log(allMatches)
+
   if (allMatches !== '') {
 
 

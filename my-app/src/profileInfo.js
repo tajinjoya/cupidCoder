@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import Cookies from "universal-cookie";
 import Avatar from "react-avatar";
 import Sppiner from "./Sppiner";
 import "./profileInfo.css";
-import { Chat, addResponseMessage, addUserMessage } from "react-chat-popup";
+import { Chat, addResponseMessage } from "react-chat-popup";
 
-const cookies = new Cookies();
 
 export default class playerProfile extends Component {
   constructor(props) {
@@ -44,7 +42,8 @@ export default class playerProfile extends Component {
         arr = arr.split('/');
         console.log(arr)
         for(let i = 0; i < arr.length; i++){
-            addResponseMessage(`${arr[i]}`);
+            console.log(arr[i])
+            if(arr[i] !== "undefined") addResponseMessage(`${arr[i]}`);
         }
     })
     
@@ -66,6 +65,7 @@ export default class playerProfile extends Component {
         })
         .then(res => {
           console.log(res);
+
           this.setState({
             data: res,
             loading: false
@@ -76,7 +76,8 @@ export default class playerProfile extends Component {
         });
   };
   homeRoute() {
-    window.location.replace("http://localhost:3000/home");
+      
+          window.location.replace("http://localhost:3000/home");
   }
   goToMessages() {
     window.location.replace("http://localhost:3000/matches");

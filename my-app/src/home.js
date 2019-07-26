@@ -34,6 +34,9 @@ class home extends React.Component {
             .location
             .replace("http://localhost:3000/matches");
     }
+    pleaseWork() {
+        console.log('link IT');
+    }
 
     render() {
 
@@ -42,6 +45,7 @@ class home extends React.Component {
                 data = <div className="overflowBody">
                 <div className="HomeButton"></div>
                 <div className="Messages" onClick={this.goToMessages}></div>
+
                 <Sppiner/>
                 <div className="homeSpace"></div>
                 <div className="likeButton2"></div>

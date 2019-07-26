@@ -1,17 +1,19 @@
 .root {
   /* font-family: 'Courier New', Courier; */
-  font-family: 'Pacifico', cursive; 
+  font-family: 'Roboto', sans-serif;
   margin-top: -45px;
-  background: radial-gradient(circle at 9% 100%, #ff4545, #f98b60);
+  /* background: radial-gradient(circle at 9% 100%, #ff4545, #f98b60); */
+  background-color: #f4f6f6;
   padding: 60px 20px;
   line-height: 0.4em;
   text-align: center;
-  font-size: 18px;
-  font-weight: bold;
+  /* font-size: 18px; */
+  /* font-weight: bold; */
   /* height: 100vh; */
   overflow: auto;
   position:fixed;
   width: 90%;
+  height: 100%;
  
 }
 
@@ -26,7 +28,8 @@
   border-color: whitesmoke;
   border-radius: 30px;
   padding: 10px;
-  font-weight: bold;
+  background-color: white;
+  /* font-weight: bold; */
 }
 
 .textareaProfile {
@@ -38,7 +41,7 @@
 }
 
 span button {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Roboto', sans-serif;
   /* font-family: 'Courier New', Courier, monospace; */
   font-weight: bold;
   font-size: 18px;
