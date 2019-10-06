@@ -1,4 +1,5 @@
-# s19-lastproject-sugar
+# cupidCoder
+A dating app exclusively for programmers which we built in a group as our final project at &lt;/salt>.
 
 To setup database:
 
