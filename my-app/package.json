@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@slate-editor/font-family-plugin": "^5.1.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "react": "^16.8.6",
     "react-autosize-textarea": "^7.0.0",
